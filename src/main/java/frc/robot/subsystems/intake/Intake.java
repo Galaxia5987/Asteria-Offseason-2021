@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
     private TalonSRX motor = new TalonSRX(Ports.Intake.MOTOR);
-    private Solenoid solenoid = new Solenoid(Ports.Intake.SOLENOID);
+    private Solenoid piston = new Solenoid(Ports.Intake.SOLENOID);
 
     public void TalonSRXSelenoid() {
         this.motor.setInverted(Ports.Intake.IS_MOTOR_INVERTED);
@@ -17,9 +17,22 @@ public class Intake extends SubsystemBase {
         motor.set(ControlMode.PercentOutput, power);
     }
 
-    public void setSolenoidMode (boolean mode)  {
-        solenoid.set(mode);
+    public boolean isPistonEngaged() {
+        return piston.get();
     }
+
+    public void setPistonMode(boolean engaged) {
+        piston.set(engaged);
+    }
+
+    public void toggle() {
+        if (isPistonEngaged()) {
+            setPistonMode(false);
+        } else {
+            setPistonMode(true);
+        }
+    }
+
 }
 
 
