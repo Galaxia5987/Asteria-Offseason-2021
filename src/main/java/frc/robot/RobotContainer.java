@@ -41,7 +41,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    a.whileHeld(new Commandy());
+    a.whileHeld(new Commandy(intake));
   }
 
 

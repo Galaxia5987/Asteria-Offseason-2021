@@ -31,6 +31,7 @@ public class Intake extends SubsystemBase {
         } else {
             setPistonMode(true);
         }
+
     }
 
 }
