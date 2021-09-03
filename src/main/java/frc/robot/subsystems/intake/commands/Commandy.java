@@ -8,26 +8,32 @@ import frc.robot.subsystems.intake.Intake;
  */
 public class Commandy extends CommandBase {
     private final Intake intake;
+    private final double power;
 
     /**
      * Add Requirements
+     *
      * @param intake name to Intake.
      */
-    public Commandy(Intake intake) {
+    public Commandy(Intake intake, double power) {
         this.intake = intake;
+        this.power = power;
         addRequirements(intake);
-    }
 
+    }
 
 
     @Override
     public void initialize() {
         super.initialize();
+        intake.setPistonMode(false);
     }
+
 
     @Override
     public void execute() {
         super.execute();
+        intake.setMotorPower(power);
     }
 
     @Override
@@ -35,8 +41,11 @@ public class Commandy extends CommandBase {
         return super.isFinished();
     }
 
+
     @Override
     public void end(boolean interrupted) {
         super.end(interrupted);
+        intake.setMotorPower(0);
+        intake.setPistonMode(true);
     }
 }
