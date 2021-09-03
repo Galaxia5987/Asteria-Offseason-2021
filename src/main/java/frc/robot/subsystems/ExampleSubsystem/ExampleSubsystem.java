@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems.ExampleSubsystem;
 
+import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ExampleSubsystem extends SubsystemBase {
@@ -14,7 +16,8 @@ public class ExampleSubsystem extends SubsystemBase {
    * Creates a new ExampleSubsystem.
    */
   public ExampleSubsystem() {
-
+    ColorSensorV3 colorSensorV3;
+    
   }
 
   @Override
