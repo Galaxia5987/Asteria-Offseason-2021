@@ -4,6 +4,10 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
+/**
+ * Add motor to PowerWheels class.
+ * Add addRequirements.
+ */
 public class PowerWheels extends CommandBase {
     private final TalonSRX motor;
 
