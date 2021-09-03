@@ -7,7 +7,10 @@ public class RotationControl extends CommandBase {
 
     private ColorWheel colorWheel;
     private String startingcolor = "";
-    private int counter = 0;
+    private String lastcolor = "";
+    private String currentcolor = "";
+    private double counter = 0;
+
 
     public RotationControl(ColorWheel colorWheel) {
         this.colorWheel = colorWheel;
@@ -16,23 +19,35 @@ public class RotationControl extends CommandBase {
     @Override
     public void initialize() {
         startingcolor = colorWheel.whatcolor();
+        lastcolor = colorWheel.whatcolor();
+        currentcolor = colorWheel.whatcolor();
 
     }
 
     @Override
     public void execute() {
-
         colorWheel.setpower(0.5);
+        currentcolor = colorWheel.whatcolor();
+        if (!currentcolor.equals(lastcolor)) {
+            lastcolor = currentcolor;
+            if (currentcolor.equals(startingcolor)){
+                counter += 0.5;
+            }
+        }
 
-    }
-
-    @Override
-    public void end(boolean interrupted) {
 
     }
 
     @Override
     public boolean isFinished() {
+        if (counter >= 3){
+            return true;
+        } else
         return false;
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        colorWheel.setpower(0);
     }
 }
