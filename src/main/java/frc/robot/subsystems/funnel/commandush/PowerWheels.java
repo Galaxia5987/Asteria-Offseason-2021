@@ -15,7 +15,6 @@ public class PowerWheels extends CommandBase {
     @Override
     public void initialize() {
         super.initialize();
-
     }
 
     @Override
