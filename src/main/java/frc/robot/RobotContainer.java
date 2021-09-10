@@ -25,7 +25,11 @@ public class RobotContainer {
   public XboxController Xbox = new XboxController(1);
   public JoystickButton a = new JoystickButton(Xbox, XboxController.Button.kA.value);
   public JoystickButton b = new JoystickButton(Xbox, XboxController.Button.kB.value);
+<<<<<<< HEAD
   private final Intake intake= new Intake();
+=======
+  private Intake intake;
+>>>>>>> intake
 
   // The robot's subsystems and commands are defined here...
 
@@ -45,7 +49,11 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+<<<<<<< HEAD
     a.whileHeld(new Commandy(intake, Constants.Intake.POWER));
+=======
+    a.whileHeld(new Commandy(intake, Constants.Intake.power));
+>>>>>>> intake
   }
 
 
