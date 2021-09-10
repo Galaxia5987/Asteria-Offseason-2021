@@ -1,9 +1,9 @@
-package frc.robot.subsystems.intake;
+package frc.robot;
 
 
 /**
- * Data of MOTOR & SOLENOID power.
- * Data of is MOTOR inverted.
+ * Data of MOTOR & SOLENOID.
+ * Data of boolean MOTOR inverted.
  */
 public class Ports {
     public static class Intake {

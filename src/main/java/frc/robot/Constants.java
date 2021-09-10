@@ -17,6 +17,6 @@ package frc.robot;
  */
 public final class Constants {
     public static final class Intake {
-        public static final double power = 0.8; // [%]
+        public static final double POWER = 0.8; // [%]
     }
 }

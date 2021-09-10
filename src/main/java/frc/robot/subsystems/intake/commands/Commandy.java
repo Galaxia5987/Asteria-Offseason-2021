@@ -1,7 +1,7 @@
 package frc.robot.subsystems.intake.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.intake.Intake;
+import frc.robot.Intake;
 
 /**
  * Add Commandy function;
@@ -12,7 +12,6 @@ public class Commandy extends CommandBase {
 
     /**
      * Add Requirements
-     *
      * @param intake name to Intake.
      */
     public Commandy(Intake intake, double power) {
@@ -33,7 +32,7 @@ public class Commandy extends CommandBase {
     @Override
     public void execute() {
         super.execute();
-        intake.setMotorPower(power);
+        intake.powerWheels(power);
     }
 
     @Override
@@ -45,7 +44,7 @@ public class Commandy extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         super.end(interrupted);
-        intake.setMotorPower(0);
+        intake.powerWheels(0);
         intake.setPistonMode(true);
     }
 }

@@ -1,4 +1,4 @@
-package frc.robot.subsystems.intake;
+package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -14,21 +14,22 @@ public class Intake extends SubsystemBase {
 
     /**
      * Add motor inverted.
+     * Add data of is Motor inverted
      */
-    public void TalonSRXSelenoid() {
-        this.motor.setInverted(Ports.Intake.IS_MOTOR_INVERTED);
+    public Intake() {
+        motor.setInverted(Ports.Intake.IS_MOTOR_INVERTED);
     }
 
     /**
-     * Set power for motor.
+     * Set percentage for motor.
      * @param power the speed times the torque.
      */
-    public void setMotorPower(double power) {
+    public void powerWheels(double power) {
         motor.set(ControlMode.PercentOutput, power);
     }
 
     /**
-     * A check to see if piston is open or close.
+     * A check to see if piston is open or close, true= open, false= close.
      * @return
      */
     public boolean isPistonEngaged() {
