@@ -9,13 +9,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
  */
 public class Funnel extends SubsystemBase {
 
-    public final TalonSRX motor = new TalonSRX(Ports.Motor.MOTOR);
+    private final TalonSRX motor = new TalonSRX(Ports.Funnel.MOTOR);
 
     /**
      * set motor power [%]
+     *
      * @param power the speed times the torque.
      */
-    private void setMotorPower(double power) {
+    public void setPower(double power) {
         motor.set(ControlMode.PercentOutput, power);
     }
 
@@ -24,10 +25,12 @@ public class Funnel extends SubsystemBase {
      */
 
     private void setMotorInverted() {
-        motor.setInverted(Ports.Motor.IS_MOTOR_INVERTED);
+        motor.setInverted(Ports.Funnel.IS_MOTOR_INVERTED);
 
     }
 
-
 }
+
+
+
 

@@ -1,7 +1,7 @@
 package frc.robot.subsystems.funnel;
 
 public class Ports {
-    public class Motor {
+    public static class Funnel{
         /**
          * input motor data.
          * input boolean motor data.
