@@ -25,10 +25,15 @@ public class ColorWheel extends SubsystemBase {
         match.addColorMatch(Color.kBlue); // blue
     }
 
+    /**
+     *
+     * @return the color the sensor sees returned as a String.
+     */
     public String whatColor() {
         Color color = sensor.getColor();
         ColorMatchResult result = match.matchClosestColor(color);
         Color resultColor = result.color;
+
 
         if (resultColor == Color.kYellow) {
             return "yellow";
@@ -41,10 +46,11 @@ public class ColorWheel extends SubsystemBase {
         }
     }
 
-    public String rotationColor() {
-        return "";
-    }
 
+    /**
+     * @param powerMotor - the power given to motor [%].
+     * sets the power of the motor
+     */
     public void setPower(double powerMotor) {
         motor.set(ControlMode.PercentOutput, powerMotor);
     }
