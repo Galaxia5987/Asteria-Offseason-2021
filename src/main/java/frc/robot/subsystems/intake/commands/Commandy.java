@@ -45,6 +45,6 @@ public class Commandy extends CommandBase {
     public void end(boolean interrupted) {
         super.end(interrupted);
         intake.powerWheels(0);
-        intake.setPistonMode(true);
+//        intake.setPistonMode(true);
     }
 }
