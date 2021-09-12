@@ -6,9 +6,9 @@ import frc.robot.subsystems.colorwheel.ColorWheel;
 public class RotationControl extends CommandBase {
 
     private ColorWheel colorWheel;
-    private String startingcolor = "";
-    private String lastcolor = "";
-    private String currentcolor = "";
+    private String startingColor = "";
+    private String lastColor = "";
+    private String currentColor = "";
     private double counter = 0;
 
 
@@ -18,25 +18,26 @@ public class RotationControl extends CommandBase {
 
     @Override
     public void initialize() {
-        startingcolor = colorWheel.whatcolor();
-        lastcolor = colorWheel.whatcolor();
-        currentcolor = colorWheel.whatcolor();
+        startingColor = colorWheel.whatColor();
+        lastColor = colorWheel.whatColor();
+        currentColor = colorWheel.whatColor();
 
     }
 
     @Override
     public void execute() {
-        colorWheel.setpower(0.5);
-        currentcolor = colorWheel.whatcolor();
-        if (!currentcolor.equals(lastcolor)) {
-            lastcolor = currentcolor;
-            if (currentcolor.equals(startingcolor)){
+        colorWheel.setPower(0.5);
+        currentColor = colorWheel.whatColor();
+        if (!currentColor.equals(lastColor)) {
+            lastColor = currentColor;
+            if (currentColor.equals(startingColor)){
                 counter += 0.5;
             }
         }
 
 
     }
+
 
     @Override
     public boolean isFinished() {
