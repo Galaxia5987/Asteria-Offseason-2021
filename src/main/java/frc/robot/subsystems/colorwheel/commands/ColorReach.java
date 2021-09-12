@@ -4,13 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.colorwheel.ColorWheel;
 
 public class ColorReach extends CommandBase {
-    private String currentcolor = "";
-    private String requestedcolor = "";
-    private ColorWheel colorwheel;
+    private String currentColor = "";
+    private String requestedColor = "";
+    private ColorWheel colorWheel;
 
-    public ColorReach(ColorWheel colorWheel, String requestedcolor) {
-        this.colorwheel = colorWheel;
-        this.requestedcolor = requestedcolor;
+    public ColorReach(ColorWheel colorWheel, String requestedColor) {
+        this.colorWheel = colorWheel;
+        this.requestedColor = requestedColor;
     }
 
     @Override
@@ -20,18 +20,18 @@ public class ColorReach extends CommandBase {
 
     @Override
     public void execute() {
-        colorwheel.setpower(0.5);
-        currentcolor = colorwheel.whatcolor()
+        colorWheel.setpower(0.5);
+        currentColor = colorWheel.whatColor()
     }
 
     @Override
     public void end(boolean interrupted) {
-        colorwheel.setpower(0);
+        colorWheel.setpower(0);
     }
 
     @Override
     public boolean isFinished() {
-        if (currentcolor.equals(requestedcolor)) {
+        if (currentColor.equals(requestedColor)) {
             return true;
         } else return false;
     }
