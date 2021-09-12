@@ -20,7 +20,6 @@ public class RotationControl extends CommandBase {
     public void initialize() {
         startingColor = colorWheel.whatColor();
         lastColor = colorWheel.whatColor();
-        currentColor = colorWheel.whatColor();
 
     }
 
@@ -49,6 +48,6 @@ public class RotationControl extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        colorWheel.setpower(0);
+        colorWheel.setPower(0);
     }
 }

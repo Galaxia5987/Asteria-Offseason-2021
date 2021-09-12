@@ -16,12 +16,15 @@ public class ColorWheel extends SubsystemBase {
 
     private String lastColor = "";
 
-    public String whatColor() {
-        Color color = sensor.getColor();
+    public ColorWheel() {
         match.addColorMatch(Color.kYellow); // yellow
         match.addColorMatch(Color.kGreen); // green
         match.addColorMatch(Color.kRed); // red
         match.addColorMatch(Color.kBlue); // blue
+    }
+
+    public String whatColor() {
+        Color color = sensor.getColor();
         ColorMatchResult result = match.matchClosestColor(color);
         Color resultColor = result.color;
 
@@ -35,13 +38,14 @@ public class ColorWheel extends SubsystemBase {
             return "blue";
         }
     }
-        public String rotationColor () {
-            return "";
-        }
 
-        public void setPower (double powerMotor){
-            motor.set(ControlMode.PercentOutput, powerMotor);
-        }
-
-
+    public String rotationColor() {
+        return "";
     }
+
+    public void setPower(double powerMotor) {
+        motor.set(ControlMode.PercentOutput, powerMotor);
+    }
+
+
+}
