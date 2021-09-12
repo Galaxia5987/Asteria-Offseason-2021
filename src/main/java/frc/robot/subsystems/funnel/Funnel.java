@@ -12,21 +12,21 @@ public class Funnel extends SubsystemBase {
     private final TalonSRX motor = new TalonSRX(Ports.Funnel.MOTOR);
 
     /**
+     * motor boolean inverted input data from Ports.
+     */
+
+    public Funnel() {
+        motor.setInverted(Ports.Funnel.IS_MOTOR_INVERTED);
+
+    }
+
+    /**
      * set motor power [%]
      *
      * @param power the speed times the torque.
      */
     public void setPower(double power) {
         motor.set(ControlMode.PercentOutput, power);
-    }
-
-    /**
-     * motor boolean inverted input data from Ports.
-     */
-
-    private void setMotorInverted() {
-        motor.setInverted(Ports.Funnel.IS_MOTOR_INVERTED);
-
     }
 
 }

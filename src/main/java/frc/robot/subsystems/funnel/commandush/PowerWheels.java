@@ -1,19 +1,21 @@
 package frc.robot.subsystems.funnel.commandush;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.robot.subsystems.funnel.Funnel;
 
 /**
  * Add motor to PowerWheels class.
  * Add addRequirements.
  */
 public class PowerWheels extends CommandBase {
-    private final TalonSRX motor;
+    private final Funnel funnel;
+    private final double power;
 
-    public PowerWheels(TalonSRX motor) {
-        this.motor = motor;
-        addRequirements((Subsystem) motor);
+
+    public PowerWheels(Funnel funnel, double power) {
+        this.funnel = funnel;
+        this.power = power;
+        addRequirements(funnel);
     }
 
     @Override
@@ -24,6 +26,7 @@ public class PowerWheels extends CommandBase {
     @Override
     public void execute() {
         super.execute();
+        funnel.setPower(power);
     }
 
     @Override
@@ -34,6 +37,7 @@ public class PowerWheels extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         super.end(interrupted);
+        funnel.setPower(0);
     }
 
 
