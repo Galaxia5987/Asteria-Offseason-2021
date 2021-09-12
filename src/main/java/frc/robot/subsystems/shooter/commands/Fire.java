@@ -3,12 +3,12 @@ package frc.robot.subsystems.shooter.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.shooter.Shooter;
 
-public class Shoot extends CommandBase {
+public class Fire extends CommandBase {
     private Shooter sniper;
     private double distance;
     private double targetSpeed;
 
-    public Shoot(Shooter sniper, double distance) {
+    public Fire(Shooter sniper, double distance) {
         this.sniper = sniper;
         this.distance = distance;
         addRequirements(sniper);
