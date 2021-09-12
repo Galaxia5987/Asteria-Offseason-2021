@@ -14,9 +14,9 @@ public class ColorWheel extends SubsystemBase {
     ColorSensorV3 sensor = new ColorSensorV3(I2C.Port.kMXP);
     ColorMatch match = new ColorMatch();
 
-    private String lastcolor = "";
+    private String lastColor = "";
 
-    public String whatcolor() {
+    public String whatColor() {
         Color color = sensor.getColor();
         match.addColorMatch(Color.kYellow); // yellow
         match.addColorMatch(Color.kGreen); // green
@@ -35,12 +35,13 @@ public class ColorWheel extends SubsystemBase {
             return "blue";
         }
     }
-        public String rotationcolor () {
+        public String rotationColor () {
             return "";
         }
 
-        public void setpower ( double powermotor){
-            motor.set(ControlMode.PercentOutput, powermotor);
+        public void setPower (double powerMotor){
+            motor.set(ControlMode.PercentOutput, powerMotor);
         }
+
 
     }
