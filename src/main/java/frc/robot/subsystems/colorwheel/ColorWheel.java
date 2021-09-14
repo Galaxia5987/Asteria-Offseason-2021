@@ -41,11 +41,12 @@ public class ColorWheel extends SubsystemBase {
             return "green";
         } else if (resultColor == Color.kRed) {
             return "red";
-        } else {
+        } else if (resultColor == Color.kBlue) {
             return "blue";
+        } else {
+            return "UNKNOWN";
         }
     }
-
 
     /**
      * @param powerMotor - the power given to motor [%].

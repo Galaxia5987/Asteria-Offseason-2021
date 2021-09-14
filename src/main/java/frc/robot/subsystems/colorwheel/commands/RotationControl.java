@@ -1,5 +1,6 @@
 package frc.robot.subsystems.colorwheel.commands;
 
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Constants.ColorWheel.*;
@@ -23,7 +24,6 @@ public class RotationControl extends CommandBase {
     public void initialize() {
         startingColor = colorWheel.whatColor();
         lastColor = colorWheel.whatColor();
-
     }
 
     @Override
@@ -31,10 +31,12 @@ public class RotationControl extends CommandBase {
         // counting rotations method
         colorWheel.setPower(Constants.ColorWheel.power);
         currentColor = colorWheel.whatColor();
-        if (!currentColor.equals(lastColor)) {
-            lastColor = currentColor;
-            if (currentColor.equals(startingColor)) {
-                counter += 0.5;
+        if (!currentColor.equals("UNKNOWN")) {
+            if (!currentColor.equals(lastColor)) {
+                lastColor = currentColor;
+                if (currentColor.equals(startingColor)) {
+                    counter += 0.5;
+                }
             }
         }
 
