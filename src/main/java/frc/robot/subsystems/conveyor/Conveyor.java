@@ -1,11 +1,11 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems.conveyor;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Ports;
 
 public class Conveyor extends SubsystemBase {
     private final TalonSRX motor = new TalonSRX(Ports.Conveyor.MOTOR_POWER);
@@ -13,13 +13,13 @@ public class Conveyor extends SubsystemBase {
     private final AnalogInput funnelProximity = new AnalogInput(Ports.Conveyor.SHOOTER_PROXIMITY);
     private final AnalogInput shooterProximity = new AnalogInput(Ports.Conveyor.FUNNEL_PROXIMITY);
 
-    private void setMotor(double power) {
-        motor.set(ControlMode.PercentOutput, power);
+    public Conveyor() {
+        motor.setInverted(Ports.Conveyor.IS_MOTOR_INVERTED);
     }
 
-    private void setMotorInverted() {
 
-        motor.setInverted(Ports.Conveyor.IS_MOTOR_INVERTED);
+    private void setMotor(double power) {
+        motor.set(ControlMode.PercentOutput, power);
     }
 
     public boolean isStopperOpen() {
@@ -29,6 +29,7 @@ public class Conveyor extends SubsystemBase {
     public void setStopperMode(boolean open) {
         stopper.set(open);
     }
+
 
     @Override
     public void periodic() {

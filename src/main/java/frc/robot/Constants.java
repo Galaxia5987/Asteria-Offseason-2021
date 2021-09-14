@@ -18,5 +18,7 @@ package frc.robot;
 public final class Constants {
     public static final class Conveyor {
         public static final int SENSE_DISTANCE = 0;
+        public static final int MIN_PROXIMITY_DISTANCE= 0;
+        public static final int MAX_PROXIMITY_DISTANCE= 0;
     }
 }
