@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import static frc.robot.Constants.Turret.*;
+
 public class UnitModel {
     double ticksPerUnit;
 
@@ -22,5 +24,4 @@ public class UnitModel {
     public int toTicks100ms(double velocity){
         return (int) (velocity * ticksPerUnit / 10);
     }
-
 }

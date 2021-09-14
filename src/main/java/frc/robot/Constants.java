@@ -16,4 +16,16 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    public static class Turret{
+        public static double MAX_ANGLE = 0;
+        public static double MIN_ANGLE = 0;
+        public static double CYCLE_TIME = 0.2;
+        public static double TICKS_PER_DEGREE = 4096 / 360;
+        public static double RADIUS = 19.0;
+        public static double TURRET_CIRCUMFERENCE = Math.PI * 2 * RADIUS;
+        public static double kP = 0;
+        public static double kI = 0;
+        public static double kD = 0;
+    }
 }
