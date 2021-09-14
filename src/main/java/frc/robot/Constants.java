@@ -16,5 +16,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
+    public static final class Conveyor {
+        public static final int SENSE_DISTANCE = 0;
+    }
 }
