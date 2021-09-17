@@ -11,7 +11,13 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
+import frc.robot.subsystems.shooter.Shooter;
+import frc.robot.subsystems.shooter.commands.Fire;
+
+import java.util.function.BooleanSupplier;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -20,12 +26,16 @@ import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+    public static final XboxController xboxController = new XboxController(1);
+    private final Trigger RT = new Trigger(() -> xboxController.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.3);
+    Shooter sniper = new Shooter();
 
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -37,6 +47,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+      RT.whileActiveOnce(new Fire(sniper));
   }
 
 

@@ -23,7 +23,7 @@ public class Shooter extends SubsystemBase {
     private final TalonSRX motorMain = new TalonSRX(portMain);
     private final TalonSRX motorAux1 = new TalonSRX(portAux1);
     private final TalonSRX motorAux2 = new TalonSRX(portAux2);
-    private final UnitModel unitMan = new UnitModel(TICKS);
+    public static UnitModel unitMan = new UnitModel(TICKS);
 
     /**
      * Here the constants for the PID is set for the TalonSRX
@@ -42,7 +42,7 @@ public class Shooter extends SubsystemBase {
     /**
      * This function gets the velocity from the TalonSRX,
      * and converts it to the required units
-     * @return the velocity in rpm
+     * @return the velocity in rps
      */
     public double getVelocity(){
         double ticks100ms = motorMain.getSelectedSensorVelocity();
