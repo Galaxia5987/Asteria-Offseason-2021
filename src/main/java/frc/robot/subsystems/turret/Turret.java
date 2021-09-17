@@ -3,14 +3,14 @@ package frc.robot.subsystems.turret;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.UnitModel;
 
 import static frc.robot.Constants.Turret.*;
 import static frc.robot.Ports.Turret.*;
 
-public class Turret {
-    private double currAngle = 0; // The current angle of the turret.
+public class Turret extends SubsystemBase {
+    private double currAngle = 90; // The current angle of the turret.
     private double targetAngle; // The angle the turret needs to get to.
     private UnitModel unitMan = new UnitModel(TICKS_PER_DEGREE); // The unit conversion module.
     private TalonSRX motor = new TalonSRX(motorPort); // The motor used to spin the turret.
@@ -38,6 +38,22 @@ public class Turret {
     }
 
     /**
+     * Gets the current angle of the turret
+     * @return the current angle
+     */
+    public double getCurrAngle() {
+        return currAngle;
+    }
+
+    /**
+     * Gets the target angle of the turret
+     * @return the target angle
+     */
+    public double getTargetAngle() {
+        return targetAngle;
+    }
+
+    /**
      * Sets the current angle of the turret.
      * @param currAngle is the current angle of the turret.
      */
@@ -50,6 +66,17 @@ public class Turret {
      */
     public void setAngle(){
         motor.set(ControlMode.Position, unitMan.toTicks(targetAngle - currAngle));
+    }
+
+    /**
+     * Checks whether or not the target angle and the current angle are equal in a certain error range.
+     * @return whether the angles are equal.
+     */
+    public boolean anglesEqual(){
+        if(currAngle == targetAngle + ERROR_RANGE || currAngle == targetAngle - ERROR_RANGE){
+            return true;
+        }
+        return false;
     }
 
     /**
