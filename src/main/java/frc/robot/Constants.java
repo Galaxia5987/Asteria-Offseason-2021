@@ -18,12 +18,12 @@ package frc.robot;
 public final class Constants {
 
     public static class Turret{
-        public static double ERROR_RANGE = 2;
-        public static double MAX_ANGLE = 0;
-        public static double MIN_ANGLE = 0;
-        public static double TICKS_PER_DEGREE = 4096 / 360;
-        public static double kP = 0;
-        public static double kI = 0;
-        public static double kD = 0;
+        public static final double ERROR_RANGE = 2; // degrees
+        public static final double MAX_ANGLE = 0; // degrees
+        public static final double MIN_ANGLE = 0; // degrees
+        public static final double TICKS_PER_DEGREE = 4096 / 360;
+        public static final double kP = 0;
+        public static final double kI = 0;
+        public static final double kD = 0;
     }
 }

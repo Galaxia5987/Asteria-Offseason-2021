@@ -25,8 +25,6 @@ import frc.robot.subsystems.turret.commands.Gunner;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-    private final XboxController xbox = new XboxController(1);
-    Trigger LT = new Trigger(() -> xbox.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.3);
     private final Turret gunnerMan = new Turret();
     // The robot's subsystems and commands are defined here...
 

@@ -10,23 +10,27 @@ import static frc.robot.Constants.Turret.*;
 import static frc.robot.Ports.Turret.*;
 
 public class Turret extends SubsystemBase {
-    private double currAngle = 90; // The current angle of the turret.
-    private double targetAngle; // The angle the turret needs to get to.
+    private double currAngle = 90; // The current angle of the turret. [degrees]
+    private double targetAngle; // The angle the turret needs to get to. [degrees]
     private UnitModel unitMan = new UnitModel(TICKS_PER_DEGREE); // The unit conversion module.
-    private TalonSRX motor = new TalonSRX(motorPort); // The motor used to spin the turret.
+    private TalonSRX motor = new TalonSRX(MOTOR); // The motor used to spin the turret.
 
     //Constructor.
     public Turret(){
         motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
         motor.config_kP(0, kP);
         motor.config_kI(0, kI);
         motor.config_kD(0, kD);
-        motor.setSensorPhase(true);
+
+        motor.setInverted(INVERTED);
+
+        motor.setSensorPhase(SENSOR_PHASE);
     }
 
     /**
-     * This function sets the angle the turret needs to be at.
-     * @param targetAngle is the angle the turret needs to be at.
+     * This function sets the angle the turret needs to be at. [degrees]
+     * @param targetAngle is the angle the turret needs to be at. [degrees]
      */
     public void setTargetAngle(double targetAngle) {
         if(targetAngle > MAX_ANGLE)
@@ -38,24 +42,24 @@ public class Turret extends SubsystemBase {
     }
 
     /**
-     * Gets the current angle of the turret
-     * @return the current angle
+     * Gets the current angle of the turret. [degrees]
+     * @return the current angle. [degrees]
      */
     public double getCurrAngle() {
         return currAngle;
     }
 
     /**
-     * Gets the target angle of the turret
-     * @return the target angle
+     * Gets the target angle of the turret. [degrees]
+     * @return the target angle. [degrees]
      */
     public double getTargetAngle() {
         return targetAngle;
     }
 
     /**
-     * Sets the current angle of the turret.
-     * @param currAngle is the current angle of the turret.
+     * Sets the current angle of the turret. [degrees]
+     * @param currAngle is the current angle of the turret. [degrees]
      */
     public void setCurrAngle(double currAngle){
         this.currAngle = currAngle;
@@ -64,7 +68,7 @@ public class Turret extends SubsystemBase {
     /**
      * Changes the position of the motor, hence changing the position of the turret.
      */
-    public void setAngle(){
+    public void setPosition(){
         motor.set(ControlMode.Position, unitMan.toTicks(targetAngle - currAngle));
     }
 
@@ -73,7 +77,7 @@ public class Turret extends SubsystemBase {
      * @return whether the angles are equal.
      */
     public boolean anglesEqual(){
-        if(currAngle == targetAngle + ERROR_RANGE || currAngle == targetAngle - ERROR_RANGE){
+        if(currAngle <= targetAngle + ERROR_RANGE || currAngle >= targetAngle - ERROR_RANGE){
             return true;
         }
         return false;
@@ -84,6 +88,6 @@ public class Turret extends SubsystemBase {
      */
     public void terminate(){
         targetAngle = 0;
-        setAngle();
+        setPosition();
     }
 }

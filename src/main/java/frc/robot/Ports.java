@@ -3,6 +3,8 @@ package frc.robot;
 public final class Ports {
 
     public static class Turret{
-        public static int motorPort = 0;
+        public final static boolean INVERTED = false;
+        public final static boolean SENSOR_PHASE = false;
+        public final static int MOTOR = 0;
     }
 }

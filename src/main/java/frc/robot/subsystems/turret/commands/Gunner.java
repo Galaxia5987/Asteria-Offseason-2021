@@ -29,11 +29,7 @@ public class Gunner extends CommandBase {
         gunnerMan.setTargetAngle(targetAngle);
 
         if(LT.get())
-            gunnerMan.setAngle();
-
-        if (isFinished()) {
-            gunnerMan.setCurrAngle(targetAngle);
-        }
+            gunnerMan.setPosition();
     }
 
     // Resets the turret.
@@ -45,9 +41,6 @@ public class Gunner extends CommandBase {
     // Continues running the program until interrupted.
     @Override
     public boolean isFinished() {
-        if (!gunnerMan.anglesEqual())
-            return false;
-        else
-            return true;
+        return !gunnerMan.anglesEqual();
     }
 }

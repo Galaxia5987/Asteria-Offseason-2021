@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.Turret.*;
-
 public class UnitModel {
     double ticksPerUnit;
 
