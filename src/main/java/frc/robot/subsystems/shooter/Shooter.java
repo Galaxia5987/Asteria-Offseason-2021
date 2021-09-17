@@ -13,13 +13,12 @@ import static frc.robot.Constants.Shooter.*;
  * This is the class used to do all necessary calculations
  * for the shooter
  *
- * motorMain - the leaing motor, all calculations are done
+ * motorMain - the leading motor, all calculations are done
  * based on this motor
  *
  * motorAux1/2 - these two motors follow motorMain
  */
 public class Shooter extends SubsystemBase {
-    public static double targetDistance;
     private final TalonSRX motorMain = new TalonSRX(portMain);
     private final TalonSRX motorAux1 = new TalonSRX(portAux1);
     private final TalonSRX motorAux2 = new TalonSRX(portAux2);
