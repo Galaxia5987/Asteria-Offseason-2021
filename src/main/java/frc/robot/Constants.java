@@ -19,8 +19,8 @@ public final class Constants {
 
     public static class Turret{
         public static final double ERROR_RANGE = 2; // degrees
-        public static final double MAX_ANGLE = 0; // degrees
-        public static final double MIN_ANGLE = 0; // degrees
+        public static final double MAX_ANGLE = 135; // degrees
+        public static final double MIN_ANGLE = 45; // degrees
         public static final double TICKS_PER_DEGREE = 4096 / 360;
         public static final double kP = 0;
         public static final double kI = 0;
