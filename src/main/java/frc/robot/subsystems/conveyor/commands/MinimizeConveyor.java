@@ -1,21 +1,22 @@
 package frc.robot.subsystems.conveyor.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.conveyor.Conveyor;
 
 /**
- * Create a constructor for conveyor, power.
+ * Create a constructor for conveyor, open.
  * Add requirements.
  */
-public class ConveyorShooter extends CommandBase {
+
+public class MinimizeConveyor extends CommandBase {
     private final Conveyor conveyor;
     private final double power;
 
-    public ConveyorShooter(Conveyor conveyor, double power) {
+    public MinimizeConveyor(Conveyor conveyor, double power) {
         this.conveyor = conveyor;
         this.power = power;
         addRequirements(conveyor);
-
     }
 
     @Override
@@ -23,12 +24,15 @@ public class ConveyorShooter extends CommandBase {
     }
 
     /**
-     * Give power to motor.
+     * Reverse the ball when funnel proximity doesn't sense ball.
      */
     @Override
     public void execute() {
-        conveyor.setMotor(power);
-
+        if (conveyor.senseFunnelBall()) {
+            conveyor.setMotor(0);
+        } else {
+            conveyor.setMotor(power);
+        }
     }
 
     @Override
@@ -36,14 +40,9 @@ public class ConveyorShooter extends CommandBase {
         return false;
     }
 
-    /**
-     * Stop giving power to the motor.
-     * @param interrupted button not pressed.
-     */
     @Override
     public void end(boolean interrupted) {
-        conveyor.setMotor(0);
     }
 
-}
 
+}
