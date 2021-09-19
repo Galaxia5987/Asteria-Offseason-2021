@@ -37,23 +37,42 @@ public class Drivetrain extends SubsystemBase {
         starTimer();
     }
 
-
+    /**
+     *
+     * @param valueMotorR for set power function + the Right motor is powered in percent.
+     */
     public void setPowerR(double valueMotorR) {
         frMotor.set(ControlMode.PercentOutput, valueMotorR);
     }
 
+    /**
+     *
+     * @param valueMotorL for power function + the left motor is powered by percents.
+     */
     public void setPowerL(double valueMotorL) {
         flMotor.set(ControlMode.PercentOutput, valueMotorL);
     }
 
+    /**
+     *
+     * @return the velocity of right motor. [m/s]
+     */
     public double getVelocityRight() {
         return getUnitModel().toVelocity(frMotor.getSelectedSensorVelocity());
     }
+
+    /**
+     * @return the velocity of left motor. [m/s]
+     */
 
     public double getVelocityLeft() {
         return getUnitModel().toVelocity(frMotor.getSelectedSensorVelocity());
     }
 
+    /**
+     *
+     * @return if the solenoid is on high gear.
+     */
     public UnitModel getUnitModel() {
         if (isHighGear()) {
             return highGear;
@@ -61,6 +80,10 @@ public class Drivetrain extends SubsystemBase {
         return lowGear;
     }
 
+    /**
+     *
+     * @param mode refers to which gear the selenoid should move (high for high gear and low gear).
+     */
     public void shiftGear(GearMode mode) {
         switch (mode) {
             case HIGH:
@@ -76,6 +99,10 @@ public class Drivetrain extends SubsystemBase {
         }
     }
 
+    /**
+     *
+     * @return the piston position them, changes the gear.
+     */
     public boolean isHighGear() {
         return piston.get();
     }
@@ -90,10 +117,17 @@ public class Drivetrain extends SubsystemBase {
         piston.set(false);
     }
 
+    /**
+     * the opposite of what the piston position actually is.
+     */
     public void toggle() {
         piston.set(!piston.get());
     }
 
+    /**
+     *
+     * @return if the selenoid can shift to low gear
+     */
     public boolean canShiftLow() {
         return getVelocityLeft() < Constants.Drivetrain.SHIFT_SPEED_TOLERANCE &&
                 getVelocityRight() < Constants.Drivetrain.SHIFT_SPEED_TOLERANCE &&
@@ -102,15 +136,26 @@ public class Drivetrain extends SubsystemBase {
 
     }
 
+    /**
+     *
+     * @return if the selenoid can shift to high gear
+     */
     public boolean canShiftHigh() {
         return !isHighGear() && timer.hasElapsed(Constants.Drivetrain.SHIFTER_COOLDOWN);
     }
 
+    /**
+     * starts the timer
+     */
     public void starTimer() {
         timer.reset();
         timer.start();
     }
 
+
+    /**
+     * which gearmodes exist
+     */
     public enum GearMode {
         HIGH, LOW
     }

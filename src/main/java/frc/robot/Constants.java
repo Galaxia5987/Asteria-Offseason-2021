@@ -21,5 +21,6 @@ public final class Constants {
         public static final double SHIFTER_COOLDOWN = 0.5; // Time after shifting the shifter is not to be used.
         public static final double TURNING_TOLERANCE = 1; // Stops the robot from shifting while the robot is turning.
         public static final double SHIFT_SPEED_TOLERANCE = 0.5; // Stops the robot from shifting while the robot is too fast
+        public static final double JOYSTICK_DRIFT = 0.05;
     }
 }

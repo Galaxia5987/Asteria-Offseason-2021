@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
 import frc.robot.subsystems.drivetrain.Drivetrain;
+import frc.robot.subsystems.drivetrain.commands.DrivetrainDefaultCommand;
 import frc.robot.subsystems.drivetrain.commands.ShiftGear;
 
 /**
@@ -24,12 +25,16 @@ import frc.robot.subsystems.drivetrain.commands.ShiftGear;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
+  public static XboxController xboxController = new XboxController(0);
+  public Drivetrain drivetrain = new Drivetrain();
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
+    configDefaultCommands();
     configureButtonBindings();
   }
 
@@ -40,6 +45,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+  }
+
+  private void configDefaultCommands() {
+    drivetrain.setDefaultCommand(new DrivetrainDefaultCommand(drivetrain));
   }
 
 
