@@ -23,8 +23,7 @@ public class Gunner extends CommandBase {
     public void execute() {
         X = xbox.getX(GenericHID.Hand.kRight);
         Y = xbox.getY(GenericHID.Hand.kRight);
-        targetAngle = Math.atan2(Y, X);
-
+        targetAngle = Math.toDegrees(Math.atan2(Y, X));
 
         gunnerMan.setTargetAngle(targetAngle);
 
