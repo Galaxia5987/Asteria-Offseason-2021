@@ -1,7 +1,7 @@
 package frc.robot.subsystems.intake.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Intake;
+import frc.robot.subsystems.intake.Intake;
 
 /**
  * Add Commandy function;

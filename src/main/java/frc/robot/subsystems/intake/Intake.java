@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.subsystems.intake;
 
 import java.io.*;
 import java.util.Scanner;
@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Ports;
 
 /**
  * Add&named motors in Intake.
