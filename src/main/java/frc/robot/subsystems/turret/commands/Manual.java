@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Ports;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.UnitModel;
 import frc.robot.subsystems.turret.Turret;
 
 public class Manual extends CommandBase {
@@ -26,9 +27,13 @@ public class Manual extends CommandBase {
     public void execute() {
         double x = xbox.getX(GenericHID.Hand.kRight);
         if (Math.abs(x) < 0.01) x = 0;
-        x = x / 2;
-        turret.setPower(x);
+        x /= 4;
         System.out.println(turret.getTicks());
+        System.out.println(x);
+//        turret.setPower(x);
+//        turret.setVelocity(x * 300);
+//        turret.setPosition(1600);
+        turret.setPosition(0);
     }
 
     @Override

@@ -34,8 +34,8 @@ public class RobotContainer {
      * The container for the robot.  Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
-//        gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
-        gunnerMan.setDefaultCommand(new Manual(gunnerMan));
+//        gunnerMan.setDefaultCommand(new Manual(gunnerMan));
+        gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
         // Configure the button bindings
         configureButtonBindings();
     }

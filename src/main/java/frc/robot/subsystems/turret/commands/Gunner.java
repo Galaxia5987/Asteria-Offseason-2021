@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.subsystems.turret.Turret;
 
+import static frc.robot.Constants.Turret.*;
+
 public class Gunner extends CommandBase {
     private double X;
     private double Y;
@@ -13,7 +15,7 @@ public class Gunner extends CommandBase {
     private final XboxController xbox = new XboxController(1);
     Trigger LT = new Trigger(() -> xbox.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.3);
 
-    public Gunner(Turret gunnerMan){
+    public Gunner(Turret gunnerMan) {
         this.gunnerMan = gunnerMan;
         addRequirements(gunnerMan);
     }
@@ -22,13 +24,15 @@ public class Gunner extends CommandBase {
     @Override
     public void execute() {
         X = xbox.getX(GenericHID.Hand.kRight);
-        Y = xbox.getY(GenericHID.Hand.kRight);
+        Y = -xbox.getY(GenericHID.Hand.kRight);
+        if(Math.abs(X) < DEADBAND)
+            X = 0;
+        if(Math.abs(Y) < DEADBAND)
+            Y = 0;
         targetAngle = Math.toDegrees(Math.atan2(Y, X));
-
         gunnerMan.setTargetAngle(targetAngle);
 
-        if(LT.get())
-            gunnerMan.setPosition();
+//        if(LT.get())
     }
 
     // Resets the turret.
