@@ -35,6 +35,8 @@ public class RobotContainer {
     private final Trigger RT = new Trigger(() -> xboxController.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.3);
     private final JoystickButton a = new JoystickButton(xboxController, XboxController.Button.kA.value);
     Shooter sniper = new Shooter();
+    private final Turret gunnerMan = new Turret();
+    // The robot's subsystems and commands are defined here...
 
     Conveyor conveyor = new Conveyor();
     Funnel funnel = new Funnel();
