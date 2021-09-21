@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -41,6 +40,13 @@ public class RobotContainer {
 
     // The robot's subsystems and commands are defined here...
 
+    /**
+     * The container for the robot.  Contains subsystems, OI devices, and commands.
+     */
+    public RobotContainer() {
+        // Configure the button bindings
+        configureButtonBindings();
+    }
 
     /**
      * The container for the robot.  Contains subsystems, OI devices, and commands.
