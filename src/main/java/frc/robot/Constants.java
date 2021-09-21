@@ -17,7 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     public static final class Intake {
-        public static final double POWER = 0.7; // [%]
+        public static final double POWER = 0.5; // [%]
     }
     public static final class Conveyor {
         public static final int SENSE_DISTANCE = 0;
@@ -28,7 +28,7 @@ public final class Constants {
         public static final boolean NEW_FUNNEL_BALL = false;
         public static final int REVERSE_MOTOR_POWER = -1;
         public static int BALL_NUMBER = 3;
-        public static double POWER = 0.5;
+        public static double POWER = 0.7;
     }
     public static class Funnel{
         public static double POWER = 0.5;

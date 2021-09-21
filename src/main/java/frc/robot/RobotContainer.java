@@ -12,13 +12,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
+import frc.robot.commandgroups.PickUpBalls;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.subsystems.conveyor.commands.ConveyorShooter;
 import frc.robot.subsystems.conveyor.commands.MinimizeConveyor;
 
 import frc.robot.subsystems.funnel.Funnel;
 import frc.robot.subsystems.funnel.commandush.PowerWheels;
+import frc.robot.subsystems.intake.Intake;
 
 import static frc.robot.Constants.Funnel.*;
 
@@ -31,6 +32,8 @@ import static frc.robot.Constants.Funnel.*;
 public class RobotContainer {
 
     Conveyor conveyor = new Conveyor();
+    Funnel funnel = new Funnel();
+    Intake intake = new Intake();
     XboxController xboxController = new XboxController(1);
     JoystickButton a = new JoystickButton(xboxController, XboxController.Button.kA.value);
     JoystickButton b = new JoystickButton(xboxController, XboxController.Button.kB.value);
@@ -55,7 +58,7 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        a.whileHeld(new ConveyorShooter(conveyor, Constants.Conveyor.POWER));
+        a.whileHeld(new PickUpBalls(conveyor, funnel, intake));
         x.whileHeld(new MinimizeConveyor(conveyor, -Constants.Conveyor.POWER));
     }
 

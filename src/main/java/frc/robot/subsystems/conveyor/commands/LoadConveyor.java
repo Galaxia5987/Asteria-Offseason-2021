@@ -29,7 +29,8 @@ public class LoadConveyor extends CommandBase {
      */
     @Override
     public void execute() {
-        if (conveyor.senseFunnelBall() && conveyor.getBallNum() <= Constants.Conveyor.MAX_BALLS) {
+//        if (conveyor.senseFunnelBall() && conveyor.getBallNum() <= Constants.Conveyor.MAX_BALLS) {
+        if (true) {
             conveyor.setMotor(power);
 
         } else {
