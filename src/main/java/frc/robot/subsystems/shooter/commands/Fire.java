@@ -46,7 +46,8 @@ public class Fire extends CommandBase {
      */
     @Override
     public void execute() {
-        sniper.setVelocity(targetSpeed);
+        // sniper.setVelocity(targetSpeed);
+        sniper.setPower(0.5);
         RobotContainer.xboxController.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
     }
 
@@ -57,8 +58,7 @@ public class Fire extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        RobotContainer.xboxController.setRumble(GenericHID.RumbleType.kLeftRumble, 0
-        );
+        RobotContainer.xboxController.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
         sniper.terminate();
     }
 
