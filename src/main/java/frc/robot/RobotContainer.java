@@ -9,9 +9,15 @@ package frc.robot;
 
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
+import frc.robot.subsystems.conveyor.Conveyor;
+import frc.robot.subsystems.conveyor.commands.ConveyorShooter;
+import frc.robot.subsystems.conveyor.commands.MinimizeConveyor;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -19,35 +25,46 @@ import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+
+    Conveyor conveyor = new Conveyor();
+    XboxController xboxController = new XboxController(1);
+    JoystickButton a = new JoystickButton(xboxController, XboxController.Button.kA.value);
+    JoystickButton b = new JoystickButton(xboxController, XboxController.Button.kB.value);
+    JoystickButton y = new JoystickButton(xboxController, XboxController.Button.kY.value);
+    JoystickButton x = new JoystickButton(xboxController, XboxController.Button.kX.value);
 
 
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
-  public RobotContainer() {
-    // Configure the button bindings
-    configureButtonBindings();
-  }
-
-  /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {
-  }
+    // The robot's subsystems and commands are defined here...
 
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
+    /**
+     * The container for the robot.  Contains subsystems, OI devices, and commands.
+     */
+    public RobotContainer() {
+        // Configure the button bindings
+        configureButtonBindings();
+    }
 
-    // An ExampleCommand will run in autonomous
-    return null;
-  }
+    /**
+     * Use this method to define your button->command mappings.  Buttons can be created by
+     * instantiating a {@link GenericHID} or one of its subclasses ({@link
+     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
+     * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+     */
+    private void configureButtonBindings() {
+        a.whileHeld(new ConveyorShooter(conveyor, Constants.Conveyor.POWER));
+        x.whileHeld(new MinimizeConveyor(conveyor, -Constants.Conveyor.POWER));
+    }
+
+
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+
+        // An ExampleCommand will run in autonomous
+        return null;
+    }
 }

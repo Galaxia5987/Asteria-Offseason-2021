@@ -25,5 +25,6 @@ public final class Constants {
         public static final boolean NEW_FUNNEL_BALL = false;
         public static final int REVERSE_MOTOR_POWER = -1;
         public static int BALL_NUMBER = 3;
+        public static double POWER = 0.5;
     }
 }

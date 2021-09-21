@@ -12,10 +12,10 @@ import frc.robot.Ports;
  * Add new functions- motor, stopper, funnelProximity, shooterProximity, ballNum, newFunnelBall, newShooterBall.
  */
 public class Conveyor extends SubsystemBase {
-    private final TalonSRX motor = new TalonSRX(Ports.Conveyor.MOTOR_POWER);
+    private final TalonSRX motor = new TalonSRX(Ports.Conveyor.MOTOR);
     private final Solenoid stopper = new Solenoid(Ports.Conveyor.SOLENOID);
-    private final AnalogInput funnelProximity = new AnalogInput(Ports.Conveyor.SHOOTER_PROXIMITY);
-    private final AnalogInput shooterProximity = new AnalogInput(Ports.Conveyor.FUNNEL_PROXIMITY);
+    // private final AnalogInput funnelProximity = new AnalogInput(Ports.Conveyor.SHOOTER_PROXIMITY);
+//    private final AnalogInput shooterProximity = new AnalogInput(Ports.Conveyor.FUNNEL_PROXIMITY);
     private int ballNum = Constants.Conveyor.BALL_NUMBER;
     private boolean newFunnelBall = Constants.Conveyor.NEW_FUNNEL_BALL;
     private boolean newShooterBall = Constants.Conveyor.NEW_SHOOTER_BALL;
@@ -69,7 +69,8 @@ public class Conveyor extends SubsystemBase {
      * @return boolean sensed.
      */
     public boolean senseFunnelBall() {
-        return funnelProximity.getValue() > Constants.Conveyor.MIN_PROXIMITY_DISTANCE;
+         //return funnelProximity.getValue() > Constants.Conveyor.MIN_PROXIMITY_DISTANCE;
+        return false;
     }
 
     /**
@@ -78,7 +79,8 @@ public class Conveyor extends SubsystemBase {
      * @return boolean sensed.
      */
     public boolean senseShooterBall() {
-        return shooterProximity.getValue() > Constants.Conveyor.MIN_PROXIMITY_DISTANCE;
+        //return shooterProximity.getValue() > Constants.Conveyor.MIN_PROXIMITY_DISTANCE;
+        return false;
     }
 
     /**
