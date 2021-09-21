@@ -19,10 +19,10 @@ public class DrivetrainDefaultCommand extends CommandBase {
     @Override
     public void execute() {
         drivetrain.setPowerL(
-                deadband(xboxController.getY(GenericHID.Hand.kLeft))
+                deadband(-xboxController.getY(GenericHID.Hand.kLeft))
         );
         drivetrain.setPowerR(
-                deadband(xboxController.getY(GenericHID.Hand.kRight))
+                deadband(-xboxController.getY(GenericHID.Hand.kRight))
         );
     }
 

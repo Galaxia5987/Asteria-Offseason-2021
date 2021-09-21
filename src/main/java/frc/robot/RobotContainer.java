@@ -25,7 +25,7 @@ import frc.robot.subsystems.drivetrain.commands.ShiftGear;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  public static XboxController xboxController = new XboxController(0);
+  public static XboxController xboxController = new XboxController(1);
   public Drivetrain drivetrain = new Drivetrain();
 
 

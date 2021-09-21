@@ -3,13 +3,13 @@ package frc.robot;
 public class Ports {
 
     public static class Drivetrain {
-        public static int FR = 0;
-        public static int RR = 0;
-        public static int FL = 0;
-        public static int RL = 0;
+        public static int FR = 12;
+        public static int RR = 13;
+        public static int FL = 10;
+        public static int RL = 11;
 
-        public static boolean REVERSER_FR = false;
-        public static boolean REVERSER_RR = false;
+        public static boolean REVERSER_FR = true;
+        public static boolean REVERSER_RR = true;
         public static boolean REVERSER_FL = false;
         public static boolean REVERSER_RL = false;
 
