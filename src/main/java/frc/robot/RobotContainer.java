@@ -30,11 +30,15 @@ import static frc.robot.Constants.Funnel.*;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+    // The robot's subsystems and commands are defined here...
+    public static final XboxController xboxController = new XboxController(1);
+    private final Trigger RT = new Trigger(() -> xboxController.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.3);
+    private final JoystickButton a = new JoystickButton(xboxController, XboxController.Button.kA.value);
+    Shooter sniper = new Shooter();
 
     Conveyor conveyor = new Conveyor();
     Funnel funnel = new Funnel();
     Intake intake = new Intake();
-    XboxController xboxController = new XboxController(1);
     JoystickButton a = new JoystickButton(xboxController, XboxController.Button.kA.value);
     JoystickButton b = new JoystickButton(xboxController, XboxController.Button.kB.value);
     JoystickButton y = new JoystickButton(xboxController, XboxController.Button.kY.value);
@@ -50,6 +54,7 @@ public class RobotContainer {
         // Configure the button bindings
         configureButtonBindings();
     }
+        RT.whileActiveOnce(new Fire(sniper));
 
     /**
      * Use this method to define your button->command mappings.  Buttons can be created by
