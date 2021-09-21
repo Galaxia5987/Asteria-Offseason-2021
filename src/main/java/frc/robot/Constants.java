@@ -27,4 +27,7 @@ public final class Constants {
         public static int BALL_NUMBER = 3;
         public static double POWER = 0.5;
     }
+    public static class Funnel{
+        public static double POWER = 0.5;
+    }
 }

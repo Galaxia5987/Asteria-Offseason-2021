@@ -18,6 +18,11 @@ import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.subsystems.conveyor.commands.ConveyorShooter;
 import frc.robot.subsystems.conveyor.commands.MinimizeConveyor;
 
+import frc.robot.subsystems.funnel.Funnel;
+import frc.robot.subsystems.funnel.commandush.PowerWheels;
+
+import static frc.robot.Constants.Funnel.*;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
