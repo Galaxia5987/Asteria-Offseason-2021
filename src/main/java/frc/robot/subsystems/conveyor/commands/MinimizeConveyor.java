@@ -42,6 +42,7 @@ public class MinimizeConveyor extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
+        conveyor.setMotor(0);
     }
 
 

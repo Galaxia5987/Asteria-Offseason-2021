@@ -38,6 +38,7 @@ public class ConveyorShooter extends CommandBase {
 
     /**
      * Stop giving power to the motor.
+     *
      * @param interrupted button not pressed.
      */
     @Override

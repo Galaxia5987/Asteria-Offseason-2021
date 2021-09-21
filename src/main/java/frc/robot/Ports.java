@@ -26,7 +26,7 @@ public class Ports {
         public static final int MOTOR = 19;
         public static final boolean IS_MOTOR_INVERTED = true;
     }
-}
+
     public static class Shooter{
         public static final int portMain = 23;
         public static final int portAux1 = 24;
@@ -40,3 +40,4 @@ public class Ports {
         public final static boolean SENSOR_PHASE = true;
         public final static int MOTOR = 22;
     }
+}

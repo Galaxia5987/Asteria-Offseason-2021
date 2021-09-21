@@ -46,6 +46,7 @@ public final class Constants {
         public static final double TICKS = 4096;
 
     }
+    public static class Turret {
         public static final double ERROR_RANGE = 2; // degrees
         public static final double MAX_TICKS = 2048; // degrees
         public static final double MIN_TICKS = 0; // degrees
