@@ -16,4 +16,8 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    public final class ColorWheel {
+        public static final double power = 0.5;
+    }
 }

@@ -3,6 +3,9 @@ package frc.robot.subsystems.colorwheel.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.colorwheel.ColorWheel;
 
+/**
+ * The command makes the wheel reach the requested color.
+ */
 public class ColorReach extends CommandBase {
     private String currentColor = "";
     private String requestedColor = "";
@@ -11,6 +14,7 @@ public class ColorReach extends CommandBase {
     public ColorReach(ColorWheel colorWheel, String requestedColor) {
         this.colorWheel = colorWheel;
         this.requestedColor = requestedColor;
+        addRequirements(colorWheel);
     }
 
     @Override
@@ -20,13 +24,13 @@ public class ColorReach extends CommandBase {
 
     @Override
     public void execute() {
-        colorWheel.setpower(0.5);
-        currentColor = colorWheel.whatColor()
+        colorWheel.setPower(0.5);
+        currentColor = colorWheel.whatColor();
     }
 
     @Override
     public void end(boolean interrupted) {
-        colorWheel.setpower(0);
+        colorWheel.setPower(0);
     }
 
     @Override
