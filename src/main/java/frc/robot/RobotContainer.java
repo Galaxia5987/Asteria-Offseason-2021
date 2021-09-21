@@ -49,8 +49,8 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-//        RT.whileActiveOnce(new Fire(sniper));
-        a.whileHeld(new Fire(sniper));
+//        a.whileHeld(new Fire(sniper));
+        RT.whileActiveOnce(new Fire(sniper));
     }
 
 

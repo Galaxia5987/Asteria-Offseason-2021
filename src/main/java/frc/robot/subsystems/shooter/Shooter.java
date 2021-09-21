@@ -31,8 +31,8 @@ public class Shooter extends SubsystemBase {
      */
     public Shooter() {
         motorMain.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-//        motorAux1.follow(motorMain);
-//        motorAux2.follow(motorMain);
+        motorAux1.follow(motorMain);
+        motorAux2.follow(motorMain);
         motorMain.config_kP(0, kP);
         motorMain.config_kI(0, kI);
         motorMain.config_kD(0, kD);
