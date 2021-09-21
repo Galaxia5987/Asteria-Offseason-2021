@@ -12,6 +12,7 @@ public class Commandy extends CommandBase {
 
     /**
      * Add Requirements
+     *
      * @param intake name to Intake.
      */
     public Commandy(Intake intake, double power) {
@@ -25,7 +26,7 @@ public class Commandy extends CommandBase {
     @Override
     public void initialize() {
         super.initialize();
-        intake.setPistonMode(false);
+        intake.setPistonMode(true);
     }
 
 
@@ -45,6 +46,5 @@ public class Commandy extends CommandBase {
     public void end(boolean interrupted) {
         super.end(interrupted);
         intake.powerWheels(0);
-//        intake.setPistonMode(true);
     }
 }

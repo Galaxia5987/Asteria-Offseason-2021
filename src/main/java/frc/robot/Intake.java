@@ -1,5 +1,8 @@
 package frc.robot;
 
+import java.io.*;
+import java.util.Scanner;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -22,6 +25,7 @@ public class Intake extends SubsystemBase {
 
     /**
      * Set percentage for motor.
+     *
      * @param power the speed times the torque.
      */
     public void powerWheels(double power) {
@@ -30,6 +34,7 @@ public class Intake extends SubsystemBase {
 
     /**
      * A check to see if piston is open or close, true= open, false= close.
+     *
      * @return
      */
     public boolean isPistonEngaged() {
@@ -38,10 +43,11 @@ public class Intake extends SubsystemBase {
 
     /**
      * Set piston position.
+     *
      * @param engaged
      */
     public void setPistonMode(boolean engaged) {
-        piston.set(engaged);
+        piston.set(!engaged);
     }
 
     /**
@@ -56,6 +62,38 @@ public class Intake extends SubsystemBase {
 
     }
 
+    @Override
+    public void periodic() {
+//        getPort();
+    }
+
+//    public int getPort() {
+//        File file = new File("C:\\Users\\saarz\\Desktop\\text_file.txt");
+//        Scanner scanner = null;
+//        int lineCount = 0;
+//        boolean firstTime = true;
+//        while (true) {
+//            try {
+//                scanner = new Scanner(file);
+//                while (scanner.hasNextLine()) {
+//                    scanner.nextLine();
+//                    lineCount++;
+//                    firstTime = false;
+//                }
+//                scanner = new Scanner(file);
+//                for (int i = 0; i < lineCount; i++) {
+//                    if (scanner.hasNextLine()) {
+//                        String line = scanner.nextLine();
+//                        if (line.contains("kP"))
+//                            int port = (int) Double.parseDouble(line.substring(line.indexOf(':') + 2, line.length()));
+//
+//                    }
+//                }
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 }
 
 
