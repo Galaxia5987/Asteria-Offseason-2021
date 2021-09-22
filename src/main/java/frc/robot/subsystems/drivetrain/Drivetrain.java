@@ -1,6 +1,7 @@
 package frc.robot.subsystems.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
@@ -34,11 +35,15 @@ public class Drivetrain extends SubsystemBase {
         rlMotor.follow(flMotor);
         rrMotor.follow(frMotor);
 
+//        rrMotor.setNeutralMode(NeutralMode.Brake);
+//        frMotor.setNeutralMode(NeutralMode.Brake);
+//        flMotor.setNeutralMode(NeutralMode.Brake);
+//        rlMotor.setNeutralMode(NeutralMode.Brake);
+
         starTimer();
     }
 
     /**
-     *
      * @param valueMotorR for set power function + the Right motor is powered in percent.
      */
     public void setPowerR(double valueMotorR) {
@@ -46,7 +51,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     /**
-     *
      * @param valueMotorL for power function + the left motor is powered by percents.
      */
     public void setPowerL(double valueMotorL) {
@@ -54,7 +58,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     /**
-     *
      * @return the velocity of right motor. [m/s]
      */
     public double getVelocityRight() {
@@ -70,7 +73,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     /**
-     *
      * @return if the solenoid is on high gear.
      */
     public UnitModel getUnitModel() {
@@ -81,7 +83,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     /**
-     *
      * @param mode refers to which gear the selenoid should move (high for high gear and low gear).
      */
     public void shiftGear(GearMode mode) {
@@ -100,7 +101,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     /**
-     *
      * @return the piston position them, changes the gear.
      */
     public boolean isHighGear() {
@@ -125,7 +125,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     /**
-     *
      * @return if the selenoid can shift to low gear
      */
     public boolean canShiftLow() {
@@ -137,7 +136,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     /**
-     *
      * @return if the selenoid can shift to high gear
      */
     public boolean canShiftHigh() {
@@ -158,6 +156,13 @@ public class Drivetrain extends SubsystemBase {
      */
     public enum GearMode {
         HIGH, LOW
+    }
+
+    public double yourmama(double x) {
+        if (x < 0) {
+            return (-(1 - Math.sqrt(1 - Math.pow(-x, 2))));
+        }
+        return (1 - Math.sqrt(1 - Math.pow(x, 2)));
     }
 
 

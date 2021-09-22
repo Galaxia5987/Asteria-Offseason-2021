@@ -11,9 +11,11 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.drivetrain.commands.DrivetrainDefaultCommand;
+import frc.robot.subsystems.drivetrain.commands.Gas;
 import frc.robot.subsystems.drivetrain.commands.ShiftGear;
 
 /**
@@ -26,6 +28,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   public static XboxController xboxController = new XboxController(1);
+  private final JoystickButton a = new JoystickButton(xboxController, XboxController.Button.kA.value);
+  private final JoystickButton b = new JoystickButton(xboxController, XboxController.Button.kB.value);
   public Drivetrain drivetrain = new Drivetrain();
 
 
@@ -45,10 +49,13 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    a.whenPressed(new ShiftGear(drivetrain, Drivetrain.GearMode.HIGH));
+    b.whenPressed(new ShiftGear(drivetrain, Drivetrain.GearMode.LOW));
   }
 
   private void configDefaultCommands() {
-    drivetrain.setDefaultCommand(new DrivetrainDefaultCommand(drivetrain));
+//    drivetrain.setDefaultCommand(new DrivetrainDefaultCommand(drivetrain));
+    drivetrain.setDefaultCommand(new Gas(drivetrain));
   }
 
 
