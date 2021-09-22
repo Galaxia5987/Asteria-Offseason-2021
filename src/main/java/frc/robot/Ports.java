@@ -40,4 +40,21 @@ public class Ports {
         public final static boolean SENSOR_PHASE = true;
         public final static int MOTOR = 22;
     }
+
+    public static class Drivetrain {
+        public static int FR = 12;
+        public static int RR = 13;
+        public static int FL = 10;
+        public static int RL = 11;
+
+        public static boolean REVERSER_FR = true;
+        public static boolean REVERSER_RR = true;
+        public static boolean REVERSER_FL = false;
+        public static boolean REVERSER_RL = false;
+
+        public static boolean REVERSER_SR1 = false;
+        public static boolean REVERSER_SR2 = false;
+        public static boolean REVERSER_SF1 = false;
+        public static boolean REVERSER_SF2 = false;
+    }
 }

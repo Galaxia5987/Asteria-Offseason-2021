@@ -3,7 +3,6 @@ package frc.robot.subsystems.shooter.commands;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpiutil.math.MathUtil;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.shooter.Shooter;
 
@@ -48,7 +47,7 @@ public class Fire extends CommandBase {
     public void execute() {
         // sniper.setVelocity(targetSpeed);
         sniper.setPower(0.5);
-        RobotContainer.xboxController.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
+        RobotContainer.xboxControllerOperator.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
     }
 
     /**
@@ -58,7 +57,7 @@ public class Fire extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        RobotContainer.xboxController.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+        RobotContainer.xboxControllerOperator.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
         sniper.terminate();
     }
 
