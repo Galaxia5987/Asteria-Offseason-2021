@@ -1,13 +1,13 @@
 package frc.robot.subsystems.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Ports;
+import frc.robot.UnitModel;
 
 public class Drivetrain extends SubsystemBase {
     private TalonFX frMotor = new TalonFX(Ports.Drivetrain.FR);

@@ -9,7 +9,7 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 
 public class Gas extends CommandBase {
     private final Drivetrain drivetrain;
-    private final XboxController xboxController = RobotContainer.xboxControllerOperator;
+    private final XboxController xboxController = RobotContainer.xboxControllerDriver;
 
     public Gas(Drivetrain drivetrain) {
         this.drivetrain = drivetrain;

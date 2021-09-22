@@ -5,9 +5,8 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.UnitModel;
+import frc.robot.UnitModel;
 
 import static frc.robot.Constants.Turret.*;
 import static frc.robot.Ports.Turret.*;

@@ -19,6 +19,7 @@ import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.subsystems.conveyor.commands.MinimizeConveyor;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.drivetrain.commands.DrivetrainDefaultCommand;
+import frc.robot.subsystems.drivetrain.commands.Gas;
 import frc.robot.subsystems.funnel.Funnel;
 import frc.robot.subsystems.intake.Intake;
 import frc.robot.subsystems.shooter.Shooter;
@@ -57,7 +58,7 @@ public class RobotContainer {
      */
     public RobotContainer() {
         gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
-        drivetrain.setDefaultCommand(new DrivetrainDefaultCommand(drivetrain));
+        drivetrain.setDefaultCommand(new Gas(drivetrain));
         // Configure the button bindings
         configureButtonBindings();
     }

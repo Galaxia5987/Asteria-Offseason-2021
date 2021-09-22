@@ -5,7 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.UnitModel;
+import frc.robot.UnitModel;
 
 import static frc.robot.Ports.Shooter.*;
 import static frc.robot.Constants.Shooter.*;
