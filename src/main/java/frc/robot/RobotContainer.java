@@ -25,6 +25,7 @@ import frc.robot.subsystems.intake.Intake;
 import frc.robot.subsystems.shooter.Shooter;
 import frc.robot.subsystems.shooter.commands.Fire;
 import frc.robot.subsystems.turret.Turret;
+import frc.robot.subsystems.turret.commands.Gunner;
 
 import static frc.robot.Constants.Funnel.*;
 
@@ -57,6 +58,7 @@ public class RobotContainer {
      * The container for the robot.  Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
+        gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -69,10 +71,10 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-//        a.whileHeld(new PickUpBalls(conveyor, funnel, intake));
+        a.whileHeld(new PickUpBalls(conveyor, funnel, intake));
 //        y.whileHeld(new MinimizeConveyor(conveyor, -Constants.Conveyor.POWER));
-//        x.whileHeld(new Shoot(conveyor, sniper));
-        x.whileHeld(new Fire(sniper));
+        x.whileHeld(new Shoot(conveyor, sniper));
+//        x.whileHeld(new Fire(sniper));
     }
 
 
