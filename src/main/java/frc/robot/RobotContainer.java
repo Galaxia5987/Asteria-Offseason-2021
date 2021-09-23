@@ -9,9 +9,16 @@ package frc.robot;
 
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
+import frc.robot.subsystems.funnel.Funnel;
+import frc.robot.subsystems.funnel.commandush.PowerWheels;
+
+import static frc.robot.Constants.Funnel.*;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -19,6 +26,9 @@ import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  private XboxController xboxController = new XboxController(1);
+  private JoystickButton a = new JoystickButton(xboxController, XboxController.Button.kA.value);
+  private Funnel funnel = new Funnel();
   // The robot's subsystems and commands are defined here...
 
 
@@ -26,6 +36,7 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -37,6 +48,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    a.whileHeld(new PowerWheels(funnel, POWER));
   }
 
 
