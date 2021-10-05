@@ -1,5 +1,6 @@
 package frc.robot.subsystems.colorwheel.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -31,6 +32,7 @@ public class RotationControl extends CommandBase {
         // counting rotations method
         colorWheel.setPower(Constants.ColorWheel.power);
         currentColor = colorWheel.whatColor();
+        SmartDashboard.putString("color", currentColor);
         if (!currentColor.equals("UNKNOWN")) {
             if (!currentColor.equals(lastColor)) {
                 lastColor = currentColor;

@@ -13,7 +13,7 @@ import static frc.robot.Pot.ColorWheel.*;
 
 public class ColorWheel extends SubsystemBase {
     VictorSPX motor = new VictorSPX(PORT_MOTOR);
-    ColorSensorV3 sensor = new ColorSensorV3(I2C.Port.kMXP);
+    ColorSensorV3 sensor = new ColorSensorV3(I2C.Port.kOnboard);
     ColorMatch match = new ColorMatch();
 
     private String lastColor = "";
@@ -31,6 +31,7 @@ public class ColorWheel extends SubsystemBase {
      */
     public String whatColor() {
         Color color = sensor.getColor();
+        System.out.println(color.red + " Red " + color.blue + " Blue " + color.green + " Green ");
         ColorMatchResult result = match.matchClosestColor(color);
         Color resultColor = result.color;
 
@@ -60,4 +61,3 @@ public class ColorWheel extends SubsystemBase {
 }
 
 
-}
