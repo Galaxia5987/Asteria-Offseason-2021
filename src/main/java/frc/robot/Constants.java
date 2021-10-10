@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpiutil.math.Nat;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -16,4 +18,13 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static double LOOP_PERIOD = 0.2;
+    public static class Kalman{
+        public static double TICKS_PER_ROTATION = 4096;
+        public static double MODEL_TOLERANCE = 0;
+        public static double SENSOR_TOLERANCE = 0;
+        public static double kA = 0;
+        public static double kV = 0;
+    }
+
 }
