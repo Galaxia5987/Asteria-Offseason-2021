@@ -1,12 +1,13 @@
 package frc.robot.subsystems.turret.commands;
 
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.turret.Turret;
 
-import static frc.robot.Constants.Turret.*;
+import static frc.robot.Constants.Turret.DEADBAND;
+import static frc.robot.Constants.Turret.MIN_JOYSTICK_DISTANCE;
 
 public class Gunner extends CommandBase {
     private double X;
@@ -14,7 +15,6 @@ public class Gunner extends CommandBase {
     private double targetAngle; // Angle the turret needs to be at.
     private Turret gunnerMan; // Turret class object (in order to move the motor).
     private final XboxController xbox = RobotContainer.xboxControllerOperator;
-    Trigger LT = new Trigger(() -> xbox.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.3);
 
     public Gunner(Turret gunnerMan) {
         this.gunnerMan = gunnerMan;
@@ -31,7 +31,8 @@ public class Gunner extends CommandBase {
         if (Math.abs(Y) < DEADBAND)
             Y = 0;
         targetAngle = Math.toDegrees(Math.atan2(Y, X));
-        gunnerMan.setTargetAngle(targetAngle);
+        if (Math.hypot(X, Y) > MIN_JOYSTICK_DISTANCE)
+            gunnerMan.setTargetAngle(targetAngle);
 
 //        if(LT.get())
     }

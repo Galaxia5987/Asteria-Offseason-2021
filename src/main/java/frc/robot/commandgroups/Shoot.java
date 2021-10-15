@@ -12,12 +12,12 @@ import frc.robot.subsystems.shooter.commands.Fire;
 
 public class Shoot extends SequentialCommandGroup {
 
-    public Shoot(Conveyor conveyor, Shooter sniper) {
+    public Shoot(Conveyor conveyor, Shooter sniper, double power) {
         addCommands(
                 new CommandBase() {
                     @Override
                     public void execute() {
-                        sniper.setPower(1);
+                        sniper.setPower(power);
                     }
 
                     @Override

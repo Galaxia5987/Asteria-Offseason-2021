@@ -27,10 +27,9 @@ public class Manual extends CommandBase {
         x /= 4;
         System.out.println(turret.getTicks());
         System.out.println(x);
-//        turret.setPower(x);
+        turret.setPower(x);
 //        turret.setVelocity(x * 300);
 //        turret.setPosition(1600);
-        turret.setPosition(0);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package frc.robot.subsystems.drivetrain.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 
@@ -10,9 +9,8 @@ public class ShiftGear extends InstantCommand {
     private Drivetrain.GearMode mode;
 
     /**
-     *
-     * @pa
      * @param mode
+     * @pa
      */
     public ShiftGear(Drivetrain drivetrain, Drivetrain.GearMode mode) {
         this.drivetrain = drivetrain;
@@ -23,5 +21,6 @@ public class ShiftGear extends InstantCommand {
     @Override
     public void initialize() {
         drivetrain.shiftGear(mode);
-    }}
+    }
+}
 

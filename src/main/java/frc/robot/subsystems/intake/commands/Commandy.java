@@ -26,7 +26,7 @@ public class Commandy extends CommandBase {
     @Override
     public void initialize() {
         super.initialize();
-        intake.setPistonMode(false);
+        intake.setPistonMode(true);
     }
 
 

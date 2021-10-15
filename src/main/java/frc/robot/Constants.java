@@ -48,16 +48,17 @@ public final class Constants {
     }
     public static class Turret {
         public static final double ERROR_RANGE = 2; // degrees
-        public static final double MAX_TICKS = 2048; // degrees
-        public static final double MIN_TICKS = 0; // degrees
+        public static final double MAX_TICKS = 912; // degrees
+        public static final double MIN_TICKS = -1165; // degrees
         public static final double TICKS_PER_DEGREE = 4096.0 / 360.0;
-        public static final double kP = 0.4;
+        public static final double kP = 0.2;
         //        public static final double kP = 3.5;
         public static final double kI = 0;
         //        public static final double kI = 0.01;
         public static final double kD = 0.04;
 //        public static final double kD = 150;
-        public static final double DEADBAND = 0.1
+        public static final double DEADBAND = 0.1;
+        public static final double MIN_JOYSTICK_DISTANCE = 0.6
         ;
     }
 
