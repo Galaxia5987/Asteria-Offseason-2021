@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.ExampleSubsystem.ExampleSubsystem;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.drivetrain.commands.DrivetrainDefaultCommand;
+import frc.robot.subsystems.drivetrain.commands.GTAdrive;
 import frc.robot.subsystems.drivetrain.commands.Gas;
 import frc.robot.subsystems.drivetrain.commands.ShiftGear;
 
@@ -55,7 +56,7 @@ public class RobotContainer {
 
   private void configDefaultCommands() {
 //    drivetrain.setDefaultCommand(new DrivetrainDefaultCommand(drivetrain));
-    drivetrain.setDefaultCommand(new Gas(drivetrain));
+    drivetrain.setDefaultCommand(new GTAdrive(drivetrain));
   }
 
 

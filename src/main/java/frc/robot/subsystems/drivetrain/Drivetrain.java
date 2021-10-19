@@ -1,7 +1,6 @@
 package frc.robot.subsystems.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
@@ -163,6 +162,14 @@ public class Drivetrain extends SubsystemBase {
             return (-(1 - Math.sqrt(1 - Math.pow(-x, 2))));
         }
         return (1 - Math.sqrt(1 - Math.pow(x, 2)));
+    }
+
+    public double getVelocityTicksRight() {
+        return frMotor.getSelectedSensorVelocity();
+    }
+
+    public double getVelocityTicksLeft() {
+        return flMotor.getSelectedSensorVelocity();
     }
 
 

@@ -19,4 +19,9 @@ public class Ports {
         public static boolean REVERSER_SF2 = false;
     }
 
+
+    public static class MILF {
+        public static int JOYSTICK_LEFT = 1;
+        public static int JOYSTICK_RIGHT = 0;
+    }
 }
