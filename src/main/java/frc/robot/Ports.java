@@ -18,5 +18,12 @@ public class Ports {
         public static boolean REVERSER_SF1 = false;
         public static boolean REVERSER_SF2 = false;
     }
-
+public static class GTAdrivebetter {
+    public static int LEFT_JOYSTICK = 0;
+    public static int RIGHT_JOYSTICK = 1;
+    public static int FR = 0;
+    public static int RR = 0;
+    public static int FL = 0;
+    public static int RL = 0;
+}
 }

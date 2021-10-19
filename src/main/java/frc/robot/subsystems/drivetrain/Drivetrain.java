@@ -53,6 +53,13 @@ public class Drivetrain extends SubsystemBase {
         flMotor.set(ControlMode.PercentOutput, valueMotorL);
     }
 
+    public void setPowerLR(double ValueMotorL, double ValueMotorR){
+        flMotor.set(ControlMode.PercentOutput, ValueMotorL);
+        flMotor.set(ControlMode.PercentOutput, ValueMotorR);
+    }
+
+
+
     /**
      *
      * @return the velocity of right motor. [m/s]
