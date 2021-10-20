@@ -57,6 +57,14 @@ public class Drivetrain extends SubsystemBase {
         flMotor.set(ControlMode.PercentOutput, valueMotorL);
     }
 
+    public void setPositionL(double ticks){
+        flMotor.set(ControlMode.Position, ticks);
+    }
+
+    public void setPositionR(double ticks){
+        frMotor.set(ControlMode.Position, ticks);
+    }
+
     /**
      * @return the velocity of right motor. [m/s]
      */
