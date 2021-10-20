@@ -27,4 +27,23 @@ public final class Constants {
     public static class GTAdrive{
         public static double DEAD_BAND = 0.05;
     }
+
+    public static class CodeMonkey{
+        public static double WHEEL_RADIUS = 0; // [m]
+
+        public static class TurnTo{
+            public static double kP = 0.2;
+            public static double kI = 0;
+            public static double kD = 0.02;
+            public static double TICKS_PER_METER = 2 * Math.PI * WHEEL_RADIUS / 4096;
+            public static double ROBOT_RADIUS = 0;
+        }
+
+        public static class MoveDistance{
+            public static double kP = 0.2;
+            public static double kI = 0;
+            public static double kD = 0.02;
+            public static double TICKS_PER_METER = 2 * Math.PI * WHEEL_RADIUS / 4096;
+        }
+    }
 }
