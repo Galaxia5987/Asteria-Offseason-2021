@@ -23,7 +23,7 @@ import static frc.robot.Ports.KalmanFilter.XBOX;
  */
 public class RobotContainer {
     private double reqDistance = 15;
-    private XboxController xboxController = new XboxController(XBOX);
+    public static XboxController xboxController = new XboxController(XBOX);
     private JoystickButton a = new JoystickButton(xboxController, XboxController.Button.kA.value);
     // The robot's subsystems and commands are defined here...
 
@@ -43,7 +43,7 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        a.whenPressed(new FlyMyWheelFly(reqDistance));
+        a.whileHeld(new FlyMyWheelFly(reqDistance));
     }
 
 

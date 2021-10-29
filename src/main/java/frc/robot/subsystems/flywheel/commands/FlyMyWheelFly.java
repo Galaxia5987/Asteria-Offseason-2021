@@ -1,5 +1,6 @@
 package frc.robot.subsystems.flywheel.commands;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.estimator.KalmanFilter;
 import edu.wpi.first.wpilibj.system.LinearSystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -9,6 +10,7 @@ import edu.wpi.first.wpiutil.math.VecBuilder;
 import edu.wpi.first.wpiutil.math.Vector;
 import edu.wpi.first.wpiutil.math.numbers.N1;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.flywheel.Flywheel;
 
 import static frc.robot.Constants.Kalman.*;
@@ -43,18 +45,21 @@ public class FlyMyWheelFly extends CommandBase {
     public void execute() {
         currVelocity = flywheel.getVelocity();
 
-        u.set(1, 1, kalmanFilter.getK().get(1, 1));
-        y.set(1, 1, flywheel.getVelocity());
+        u.set(0, 0, kalmanFilter.getK().get(0, 0));
+        y.set(0, 0, flywheel.getVelocity());
 
         kalmanFilter.correct(u, y);
         kalmanFilter.predict(u, Constants.LOOP_PERIOD);
 
-        flywheel.setVelocity(y.get(1, 1));
+//        flywheel.setVoltage(y.get(0, 0));
+        flywheel.setVoltage(6);
+        RobotContainer.xboxController.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
     }
 
     @Override
     public void end(boolean interrupted) {
         flywheel.terminate();
+        RobotContainer.xboxController.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
     }
 
     @Override
