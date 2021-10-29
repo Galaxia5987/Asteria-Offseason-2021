@@ -19,12 +19,17 @@ import edu.wpi.first.wpiutil.math.Nat;
  */
 public final class Constants {
     public static double LOOP_PERIOD = 0.2;
+    public static double WHEEL_RADIUS = 0;
     public static class Kalman{
-        public static double TICKS_PER_ROTATION = 4096;
+        public static double TICKS_PER_METER = 2 * WHEEL_RADIUS * Math.PI / 4096;
         public static double MODEL_TOLERANCE = 0;
         public static double SENSOR_TOLERANCE = 0;
         public static double kA = 0;
         public static double kV = 0;
+        public static double kP = 0.35;
+        public static double kI = 0;
+        public static double kD = 0.02;
+        public static int SENSOR_POS = 0;
     }
 
 }
