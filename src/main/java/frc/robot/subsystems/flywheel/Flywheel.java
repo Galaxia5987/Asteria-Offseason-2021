@@ -33,8 +33,16 @@ public class Flywheel {
         motorMain.set(ControlMode.PercentOutput, voltage / 12);
     }
 
+    public void setOutput(double output){
+        motorMain.set(ControlMode.PercentOutput, output);
+    }
+
     public double getVelocity() {
         return unitModel.toVelocity(motorMain.getSelectedSensorVelocity());
+    }
+
+    public double getVoltage(){
+        return motorMain.getBusVoltage();
     }
 
     public double calcVelocity(double distance) {

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.flywheel.commands.FlyMyWheelFly;
+import frc.robot.subsystems.flywheel.commands.TestkV;
 
 import static frc.robot.Ports.KalmanFilter.XBOX;
 
@@ -25,6 +26,7 @@ public class RobotContainer {
     private double reqDistance = 15;
     public static XboxController xboxController = new XboxController(XBOX);
     private JoystickButton a = new JoystickButton(xboxController, XboxController.Button.kA.value);
+    private JoystickButton b = new JoystickButton(xboxController, XboxController.Button.kB.value);
     // The robot's subsystems and commands are defined here...
 
 
@@ -44,6 +46,7 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         a.whileHeld(new FlyMyWheelFly(reqDistance));
+        b.whileHeld(new TestkV());
     }
 
 
