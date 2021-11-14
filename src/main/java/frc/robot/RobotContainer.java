@@ -17,15 +17,13 @@ import frc.robot.commandgroups.Shoot;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.subsystems.conveyor.commands.MinimizeConveyor;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import frc.robot.subsystems.drivetrain.commands.DrivetrainDefaultCommand;
-import frc.robot.subsystems.drivetrain.commands.Gas;
-import frc.robot.subsystems.drivetrain.commands.ToggleGear;
-import frc.robot.subsystems.drivetrain.commands.ToggleIntakePiston;
+import frc.robot.subsystems.drivetrain.commands.*;
 import frc.robot.subsystems.funnel.Funnel;
 import frc.robot.subsystems.intake.Intake;
 import frc.robot.subsystems.shooter.Shooter;
 import frc.robot.subsystems.turret.Turret;
 import frc.robot.subsystems.turret.commands.Gunner;
+import frc.robot.subsystems.turret.commands.Manual;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -65,7 +63,7 @@ public class RobotContainer {
     public RobotContainer() {
         configureButtonBindings();
         drivetrain.setDefaultCommand(new Gas(drivetrain));
-        gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
+        gunnerMan.setDefaultCommand(new Manual(gunnerMan));
     }
 
 

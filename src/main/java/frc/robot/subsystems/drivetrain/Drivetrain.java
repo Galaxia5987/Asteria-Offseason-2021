@@ -158,7 +158,7 @@ public class Drivetrain extends SubsystemBase {
         HIGH, LOW
     }
 
-    public double yourmama(double x) {
+    public double driveFunc(double x) {
         if (x < 0) {
             return (-(1 - Math.sqrt(1 - Math.pow(-x, 2))));
         }

@@ -7,7 +7,7 @@ import frc.robot.subsystems.turret.Turret;
 
 public class Manual extends CommandBase {
     private final Turret turret;
-    private final XboxController xbox = new XboxController(1);
+    private final XboxController xbox = new XboxController(0);
 
 
     public Manual(Turret turret) {
@@ -22,7 +22,7 @@ public class Manual extends CommandBase {
 
     @Override
     public void execute() {
-        double x = xbox.getX(GenericHID.Hand.kRight);
+        double x = -xbox.getX(GenericHID.Hand.kRight);
         if (Math.abs(x) < 0.01) x = 0;
         x /= 4;
         System.out.println(turret.getTicks());

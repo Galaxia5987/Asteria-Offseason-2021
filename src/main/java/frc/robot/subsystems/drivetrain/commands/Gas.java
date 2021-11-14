@@ -1,6 +1,7 @@
 package frc.robot.subsystems.drivetrain.commands;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -9,7 +10,8 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 
 public class Gas extends CommandBase {
     private final Drivetrain drivetrain;
-    private final XboxController xboxController = RobotContainer.xboxControllerDriver;
+    private final Joystick joystickLeft = new Joystick(1);
+    private final Joystick joystickRight = new Joystick(2);
 
     public Gas(Drivetrain drivetrain) {
         this.drivetrain = drivetrain;
@@ -20,13 +22,13 @@ public class Gas extends CommandBase {
     public void execute() {
         drivetrain.setPowerL(
 //                deadband(-xboxController.getY(GenericHID.Hand.kLeft)) + deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
-                drivetrain.yourmama(deadband(-xboxController.getY(GenericHID.Hand.kLeft))) + deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
+                drivetrain.driveFunc(deadband(-joystickLeft.getY()) + joystickRight.getX()) * 0.8
 
 //                deadband(-xboxController.getY(GenericHID.Hand.kLeft))
         );
         drivetrain.setPowerR(
 //                deadband(-xboxController.getY(GenericHID.Hand.kLeft)) - deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
-                drivetrain.yourmama(deadband(-xboxController.getY(GenericHID.Hand.kLeft))) - deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
+                drivetrain.driveFunc(deadband(-joystickLeft.getY()) - joystickRight.getX()) * 0.8
 //                deadband(-xboxController.getY(GenericHID.Hand.kRight))
         );
     }

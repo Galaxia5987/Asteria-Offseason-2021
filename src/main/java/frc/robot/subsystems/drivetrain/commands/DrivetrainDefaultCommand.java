@@ -19,11 +19,11 @@ public class DrivetrainDefaultCommand extends CommandBase {
     @Override
     public void execute() {
         drivetrain.setPowerL(
-                drivetrain.yourmama(deadband(-xboxController.getY(GenericHID.Hand.kLeft)))
+                drivetrain.driveFunc(deadband(-xboxController.getY(GenericHID.Hand.kLeft)))
 //                deadband(-xboxController.getY(GenericHID.Hand.kLeft))
         );
         drivetrain.setPowerR(
-                drivetrain.yourmama(deadband(-xboxController.getY(GenericHID.Hand.kRight)))
+                drivetrain.driveFunc(deadband(-xboxController.getY(GenericHID.Hand.kRight)))
 //                deadband(-xboxController.getY(GenericHID.Hand.kRight))
         );
     }
