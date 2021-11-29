@@ -16,6 +16,12 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static final class Autonomous {
+
+        public static final double MAX_SPEED = 0.0;
+        public static final double MAX_ACCELERATION = 0.0;
+        public static final double MAX_CENTRIPETAL_ACCELERATION = 0.0;
+    }
     public static final class Intake {
         public static final double POWER = 0.5; // [%]
     }
