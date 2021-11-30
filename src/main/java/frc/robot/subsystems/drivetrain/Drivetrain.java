@@ -4,9 +4,13 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Ports;
+import frc.robot.Robot;
 import frc.robot.UnitModel;
 
 public class Drivetrain extends SubsystemBase {
@@ -17,6 +21,8 @@ public class Drivetrain extends SubsystemBase {
     private Solenoid piston = new Solenoid(0);
     private UnitModel highGear = new UnitModel(0);
     private UnitModel lowGear = new UnitModel(0);
+    private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())),
+            new Pose2d(5.0, 13.5, new Rotation2d()));
 
 
     public Timer timer = new Timer();
@@ -32,13 +38,17 @@ public class Drivetrain extends SubsystemBase {
         flMotor.setSensorPhase(Ports.Drivetrain.REVERSER_SF1);
         rlMotor.setSensorPhase(Ports.Drivetrain.REVERSER_SF2);
 
+        frMotor.config_kP(0, Constants.Drivetrain.kPRight);
+        frMotor.config_kI(0, Constants.Drivetrain.kIRight);
+        frMotor.config_kD(0, Constants.Drivetrain.kDRight);
+        flMotor.config_kP(0, Constants.Drivetrain.kPLeft);
+        flMotor.config_kI(0, Constants.Drivetrain.kILeft);
+        flMotor.config_kD(0, Constants.Drivetrain.kDLeft);
+
+
         rlMotor.follow(flMotor);
         rrMotor.follow(frMotor);
 
-//        rrMotor.setNeutralMode(NeutralMode.Brake);
-//        frMotor.setNeutralMode(NeutralMode.Brake);
-//        flMotor.setNeutralMode(NeutralMode.Brake);
-//        rlMotor.setNeutralMode(NeutralMode.Brake);
 
         starTimer();
     }
@@ -165,9 +175,18 @@ public class Drivetrain extends SubsystemBase {
         return (1 - Math.sqrt(1 - Math.pow(x, 2)));
     }
 
+    public void setVelocityRight(double velocityRight) {
+        frMotor.set(ControlMode.Velocity, velocityRight);
+    }
+
+    public void setVelocityLeft(double velocityLeft) {
+        flMotor.set(ControlMode.Velocity, velocityLeft);
+    }
+
 
     @Override
     public void periodic() {
+        
 
     }
 }
