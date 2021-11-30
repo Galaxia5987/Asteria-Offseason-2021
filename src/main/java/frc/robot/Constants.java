@@ -64,8 +64,7 @@ public final class Constants {
         public static final double kD = 0.04;
 //        public static final double kD = 150;
         public static final double DEADBAND = 0.1;
-        public static final double MIN_JOYSTICK_DISTANCE = 0.6
-        ;
+        public static final double MIN_JOYSTICK_DISTANCE = 0.6;
     }
 
     public static class Drivetrain {
@@ -73,10 +72,5 @@ public final class Constants {
         public static final double TURNING_TOLERANCE = 1; // Stops the robot from shifting while the robot is turning.
         public static final double SHIFT_SPEED_TOLERANCE = 0.5; // Stops the robot from shifting while the robot is too fast
         public static final double JOYSTICK_DRIFT = 0.05;
-    }
-
-    public static class PathUtil {
-        public static final double MAX_VELOCITY = 0;
-        public static final double MAX_ACCELERATION = 0;
     }
 }
