@@ -74,4 +74,9 @@ public final class Constants {
         public static final double SHIFT_SPEED_TOLERANCE = 0.5; // Stops the robot from shifting while the robot is too fast
         public static final double JOYSTICK_DRIFT = 0.05;
     }
+
+    public static class PathUtil {
+        public static final double MAX_VELOCITY = 0;
+        public static final double MAX_ACCELERATION = 0;
+    }
 }
