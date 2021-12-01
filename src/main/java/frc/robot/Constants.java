@@ -17,7 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     public static final class Intake {
-        public static final double POWER = 0.5; // [%]
+        public static final double POWER = 0.7; // [%]
     }
     public static final class Conveyor {
         public static final int SENSE_DISTANCE = 0;

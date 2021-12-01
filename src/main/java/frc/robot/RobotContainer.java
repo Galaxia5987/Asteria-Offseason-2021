@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commandgroups.IntakeAndFunnel;
+import frc.robot.commandgroups.OuttakeBalls;
 import frc.robot.commandgroups.PickUpBalls;
 import frc.robot.commandgroups.Shoot;
 import frc.robot.subsystems.conveyor.Conveyor;
@@ -20,6 +22,7 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 import frc.robot.subsystems.drivetrain.commands.*;
 import frc.robot.subsystems.funnel.Funnel;
 import frc.robot.subsystems.intake.Intake;
+import frc.robot.subsystems.intake.commands.Commandy;
 import frc.robot.subsystems.shooter.Shooter;
 import frc.robot.subsystems.turret.Turret;
 import frc.robot.subsystems.turret.commands.Gunner;
@@ -34,7 +37,7 @@ import frc.robot.subsystems.turret.commands.Manual;
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
     public static final XboxController xboxControllerOperator = new XboxController(0);
-    public static final XboxController xboxControllerDriver = new XboxController(1);
+    public static final XboxController xboxControllerDriver = new XboxController(3);
     //    private final Trigger RT = new Trigger(() -> xboxControllerOperator.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.3);
     private Shooter sniper = new Shooter();
     private final Turret gunnerMan = new Turret();
@@ -48,7 +51,7 @@ public class RobotContainer {
     JoystickButton b = new JoystickButton(xboxControllerOperator, XboxController.Button.kB.value);
     JoystickButton y = new JoystickButton(xboxControllerOperator, XboxController.Button.kY.value);
     JoystickButton x = new JoystickButton(xboxControllerOperator, XboxController.Button.kX.value);
-    JoystickButton yDrive = new JoystickButton(xboxControllerDriver, XboxController.Button.kY.value);
+//    JoystickButton yDrive = new JoystickButton(xboxControllerDriver, XboxController.Button.kY.value);
     Trigger rt = new Trigger(() -> xboxControllerOperator.getTriggerAxis(GenericHID.Hand.kRight) > 0.3);
     Trigger lt = new Trigger(() -> xboxControllerOperator.getTriggerAxis(GenericHID.Hand.kRight) > 0.3);
     JoystickButton rb = new JoystickButton(xboxControllerOperator, XboxController.Button.kBumperRight.value);
@@ -62,7 +65,7 @@ public class RobotContainer {
      */
     public RobotContainer() {
         configureButtonBindings();
-        drivetrain.setDefaultCommand(new Gas(drivetrain));
+        drivetrain.setDefaultCommand(new GTAdrive(drivetrain));
         gunnerMan.setDefaultCommand(new Manual(gunnerMan));
     }
 
@@ -74,13 +77,14 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        yDrive.whenPressed(new ToggleGear(drivetrain));
-        x.whileHeld(new Shoot(conveyor, sniper, 0.7));
+//        yDrive.whenPressed(new ToggleGear(drivetrain));
+        x.whileHeld(new IntakeAndFunnel(intake, funnel));
         rt.whileActiveContinuous(new Shoot(conveyor, sniper, 1));
         a.whileHeld(new MinimizeConveyor(conveyor, Constants.Conveyor.REVERSE_MOTOR_POWER));
         y.whileHeld(new PickUpBalls(conveyor, funnel, intake));
-        b.whileHeld(new Shoot(conveyor, sniper, 0.4));
+        b.whileHeld(new Commandy(intake, -0.4));
         lb.whenPressed(new ToggleIntakePiston(intake));
+        rb.whileHeld(new OuttakeBalls(funnel, conveyor, intake));
 
     }
 

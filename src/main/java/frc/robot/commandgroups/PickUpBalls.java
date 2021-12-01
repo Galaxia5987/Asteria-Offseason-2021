@@ -15,7 +15,7 @@ public class PickUpBalls extends ParallelCommandGroup {
     public PickUpBalls(Conveyor conveyor, Funnel funnel, Intake intake) {
         addCommands(
                 new ConveyorShooter(conveyor, Constants.Conveyor.POWER),
-                new Commandy(intake, Constants.Intake.POWER),
+//                new Commandy(intake, Constants.Intake.POWER),
                 new PowerWheels(funnel, Constants.Funnel.POWER)
         );
     }

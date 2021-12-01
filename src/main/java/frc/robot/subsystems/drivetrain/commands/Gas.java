@@ -22,7 +22,7 @@ public class Gas extends CommandBase {
     public void execute() {
         drivetrain.setPowerL(
 //                deadband(-xboxController.getY(GenericHID.Hand.kLeft)) + deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
-                drivetrain.driveFunc(deadband(-joystickLeft.getY()) + joystickRight.getX()) * 0.8
+                drivetrain.driveFunc(deadband(-joystickLeft.getY()) + deadband(joystickRight.getX())) * 0.8
 
 //                deadband(-xboxController.getY(GenericHID.Hand.kLeft))
         );

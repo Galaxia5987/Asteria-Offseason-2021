@@ -31,13 +31,15 @@ public class GTAdrive extends CommandBase {
             powerRightJoystick = 0;
         }
 
-        powerRightJoystick *= 0.25;
+        powerRightJoystick *= 0.4;
 
         double finalPowerRight = powerLeftJoystick - powerRightJoystick;
         double finalPowerLeft = powerLeftJoystick + powerRightJoystick;
 
-        finalPowerLeft = drivetrain.driveFunc((!checkDeadBand(finalPowerLeft, 1) ? Math.round(finalPowerLeft) : finalPowerLeft));
-        finalPowerRight = drivetrain.driveFunc((!checkDeadBand(finalPowerRight, 1) ? Math.round(finalPowerRight) : finalPowerRight));
+//        finalPowerLeft = drivetrain.driveFunc((!checkDeadBand(finalPowerLeft, 1) ? Math.round(finalPowerLeft) : finalPowerLeft));
+//        finalPowerRight = drivetrain.driveFunc((!checkDeadBand(finalPowerRight, 1) ? Math.round(finalPowerRight) : finalPowerRight));
+        finalPowerLeft = (!checkDeadBand(finalPowerLeft, 1) ? Math.round(finalPowerLeft) : finalPowerLeft) * 0.8;
+        finalPowerRight = (!checkDeadBand(finalPowerRight, 1) ? Math.round(finalPowerRight) : finalPowerRight) * 0.8;
         System.out.println(finalPowerRight);
 
         drivetrain.setPowerR(finalPowerRight);
