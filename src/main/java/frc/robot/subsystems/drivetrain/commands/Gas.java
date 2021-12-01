@@ -20,13 +20,13 @@ public class Gas extends CommandBase {
     public void execute() {
         drivetrain.setPowerL(
 //                deadband(-xboxController.getY(GenericHID.Hand.kLeft)) + deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
-                drivetrain.yourmama(deadband(-xboxController.getY(GenericHID.Hand.kLeft))) + deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
+                drivetrain.smoothingFunction(deadband(-xboxController.getY(GenericHID.Hand.kLeft))) + deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
 
 //                deadband(-xboxController.getY(GenericHID.Hand.kLeft))
         );
         drivetrain.setPowerR(
 //                deadband(-xboxController.getY(GenericHID.Hand.kLeft)) - deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
-                drivetrain.yourmama(deadband(-xboxController.getY(GenericHID.Hand.kLeft))) - deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
+                drivetrain.smoothingFunction(deadband(-xboxController.getY(GenericHID.Hand.kLeft))) - deadband(xboxController.getX(GenericHID.Hand.kRight)) * 0.8
 //                deadband(-xboxController.getY(GenericHID.Hand.kRight))
         );
     }

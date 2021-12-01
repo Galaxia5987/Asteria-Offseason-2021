@@ -19,8 +19,8 @@ public class Drivetrain extends SubsystemBase {
     private TalonFX flMotor = new TalonFX(Ports.Drivetrain.FL);
     private TalonFX rlMotor = new TalonFX(Ports.Drivetrain.RL);
     private Solenoid piston = new Solenoid(0);
-    private UnitModel highGear = new UnitModel(0);
-    private UnitModel lowGear = new UnitModel(0);
+    private UnitModel highGear = new UnitModel(Constants.Drivetrain.HIGH_TICKS_PER_METER);
+    private UnitModel lowGear = new UnitModel(Constants.Drivetrain.LOW_TICKS_PER_METER);
     private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())),
             new Pose2d(5.0, 13.5, new Rotation2d()));
 
@@ -168,7 +168,7 @@ public class Drivetrain extends SubsystemBase {
         HIGH, LOW
     }
 
-    public double yourmama(double x) {
+    public double smoothingFunction(double x) {
         if (x < 0) {
             return (-(1 - Math.sqrt(1 - Math.pow(-x, 2))));
         }
@@ -176,18 +176,41 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void setVelocityRight(double velocityRight) {
-        frMotor.set(ControlMode.Velocity, velocityRight);
+        frMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityRight));
     }
 
     public void setVelocityLeft(double velocityLeft) {
-        flMotor.set(ControlMode.Velocity, velocityLeft);
+        flMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityLeft));
     }
 
+    public double getDistanceLeft() {
+        return flMotor.getSensorCollection().getIntegratedSensorPosition();
+    }
+
+    public double getDistanceRight() {
+        return frMotor.getSensorCollection().getIntegratedSensorPosition();
+    }
+
+    /**
+     * @return position in meters
+     */
+    public Pose2d getPose() {
+        return odometry.getPoseMeters();
+    }
+
+    /**
+     * @param pose will reset position to this pose
+     */
+    public void resetPose(Pose2d pose) {
+        odometry.resetPosition(pose, new Rotation2d(Math.toRadians(-Robot.navx.getAngle())));
+    }
 
     @Override
+    /**
+     * updates position and rotation over time
+     */
     public void periodic() {
-        
-
+        odometry.update(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())), getDistanceLeft(), getDistanceRight());
     }
 }
 
