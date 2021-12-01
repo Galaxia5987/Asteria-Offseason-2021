@@ -65,7 +65,7 @@ dependencies {
     compileOnly 'javax:javaee-api:8.0.1'
     implementation 'org.eclipse.jetty:jetty-server:11.0.6'
     implementation 'org.eclipse.jetty.websocket:websocket-server:9.4.43.v20210629'
-
+    implementation 'org.ghrobotics.FalconLibrary:wpi:2020.2.2'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     implementation 'commons-httpclient:commons-httpclient:3.1'
 

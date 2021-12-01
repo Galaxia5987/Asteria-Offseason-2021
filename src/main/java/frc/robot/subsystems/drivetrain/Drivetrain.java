@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Ports;
@@ -17,7 +18,20 @@ public class Drivetrain extends SubsystemBase {
     private Solenoid piston = new Solenoid(0);
     private UnitModel highGear = new UnitModel(0);
     private UnitModel lowGear = new UnitModel(0);
+    private Pose2d position = new Pose2d();
+    private double heading;
 
+    public double getHeading() {
+        return heading;
+    }
+
+    public double getPositionX() {
+        return position.getTranslation().getX();
+    }
+
+    public double getPositionY() {
+        return position.getTranslation().getY();
+    }
 
     public Timer timer = new Timer();
 

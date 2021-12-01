@@ -11,23 +11,12 @@ import frc.robot.subsystems.shooter.Shooter;
 
 public class BottomPath extends SequentialCommandGroup {
     private final double power = 1;
-    private Drivetrain drivetrain;
-    private Shooter shooter;
-    private Intake intake;
-    private Conveyor conveyor;
-    private Funnel funnel;
 
     public BottomPath(Drivetrain drivetrain,
                       Shooter shooter,
                       Intake intake,
                       Conveyor conveyor,
                       Funnel funnel) {
-        this.drivetrain = drivetrain;
-        this.shooter = shooter;
-        this.intake = intake;
-        this.conveyor = conveyor;
-        this.funnel = funnel;
-
         addCommands(
                 new FollowPath(PathUtil.getTrajectory("paths/PlaceInitcube.wpilib.json"), drivetrain),
                 new Shoot(conveyor, shooter, power).withTimeout(2),

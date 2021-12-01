@@ -11,8 +11,11 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import org.ghrobotics.lib.debug.FalconDashboard;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -76,6 +79,8 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
+
+        FalconDashboard.INSTANCE.setFollowingPath(true);
     }
 
     /**
@@ -83,6 +88,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
+        FalconDashboard.INSTANCE.setPathX(Units.metersToFeet(m_robotContainer.drivetrain.getPositionX()));
+        FalconDashboard.INSTANCE.setPathY(Units.metersToFeet(m_robotContainer.drivetrain.getPositionY()));
+        FalconDashboard.INSTANCE.setPathHeading(m_robotContainer.drivetrain.getHeading());
     }
 
     @Override
