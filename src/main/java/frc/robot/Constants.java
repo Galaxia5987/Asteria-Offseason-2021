@@ -80,9 +80,9 @@ public final class Constants {
         public static final double kIRight = 0;
         public static final double kDRight = 0;
         public static final int TICKS = 2048;
-        public static final double DIAMETER = 1; // [m]
-        public static final double HIGH_GEAR_RATIO = 1;
-        public static final double LOW_GEAR_RATIO = 1;
+        public static final double DIAMETER = 6 * 0.0254; // [m]
+        public static final double HIGH_GEAR_RATIO = 2000 / 216.0;
+        public static final double LOW_GEAR_RATIO = 2500 / 126.0;
         public static final double HIGH_TICKS_PER_METER = (TICKS * HIGH_GEAR_RATIO) / (DIAMETER * Math.PI);
         public static final double LOW_TICKS_PER_METER = (TICKS * LOW_GEAR_RATIO) / (DIAMETER * Math.PI);
     }
