@@ -35,6 +35,7 @@ public class Drivetrain extends SubsystemBase {
 
     public Timer timer = new Timer();
 
+
     public Drivetrain() {
         rrMotor.setInverted(Ports.Drivetrain.REVERSER_RR);
         frMotor.setInverted(Ports.Drivetrain.REVERSER_FR);
@@ -164,6 +165,19 @@ public class Drivetrain extends SubsystemBase {
         timer.start();
     }
 
+    public void setLeftVelocity(){}
+
+    public void setRightVelocity(){}
+
+    public void getLeftVelocity(){}
+
+    public void getRightVelocity(){}
+
+    public void setPose(Pose2d pose) {}
+
+    public Pose2d getPose() {
+        return null;
+    }
 
     /**
      * which gearmodes exist
