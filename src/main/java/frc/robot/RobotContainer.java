@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -17,6 +18,7 @@ import frc.robot.commandgroups.Shoot;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.subsystems.conveyor.commands.MinimizeConveyor;
 import frc.robot.subsystems.drivetrain.Drivetrain;
+import frc.robot.subsystems.drivetrain.auto.FollowPath;
 import frc.robot.subsystems.drivetrain.commands.DrivetrainDefaultCommand;
 import frc.robot.subsystems.drivetrain.commands.Gas;
 import frc.robot.subsystems.drivetrain.commands.ToggleGear;
@@ -83,7 +85,6 @@ public class RobotContainer {
         y.whileHeld(new PickUpBalls(conveyor, funnel, intake));
         b.whileHeld(new Shoot(conveyor, sniper, 0.4));
         lb.whenPressed(new ToggleIntakePiston(intake));
-
     }
 
 
