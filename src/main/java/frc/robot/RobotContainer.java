@@ -12,17 +12,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commandgroups.PickUpBalls;
-import frc.robot.commandgroups.Shoot;
-import frc.robot.subsystems.conveyor.Conveyor;
-import frc.robot.subsystems.conveyor.commands.MinimizeConveyor;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import frc.robot.subsystems.drivetrain.commands.*;
-import frc.robot.subsystems.funnel.Funnel;
-import frc.robot.subsystems.intake.Intake;
-import frc.robot.subsystems.shooter.Shooter;
-import frc.robot.subsystems.turret.Turret;
-import frc.robot.subsystems.turret.commands.Gunner;
+import frc.robot.subsystems.drivetrain.commands.JoystickPIDUwU;
+import frc.robot.subsystems.drivetrain.commands.TestVelocity;
 import frc.robot.valuetuner.ValueTuner;
 import frc.robot.valuetuner.WebConstant;
 import org.techfire225.webapp.Webserver;
@@ -42,7 +34,7 @@ public class RobotContainer {
 //    private final Turret gunnerMan = new Turret();
     // The robot's subsystems and commands are defined here...
 
-//    Conveyor conveyor = new Conveyor();
+    //    Conveyor conveyor = new Conveyor();
 //    Funnel funnel = new Funnel();
 //    Intake intake = new Intake();
     Drivetrain drivetrain = new Drivetrain();
@@ -68,6 +60,7 @@ public class RobotContainer {
         configureButtonBindings();
 //        drivetrain.setDefaultCommand(new Gas(drivetrain));
 //        gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
+        drivetrain.setDefaultCommand(new JoystickPIDUwU(drivetrain));
 
         if (Robot.debug) {
             startValueTuner();
