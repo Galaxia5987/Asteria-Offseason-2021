@@ -11,6 +11,7 @@ import frc.robot.Ports;
 import frc.robot.UnitModel;
 
 public class Drivetrain extends SubsystemBase {
+    public Timer timer = new Timer();
     private TalonFX frMotor = new TalonFX(Ports.Drivetrain.FR);
     private TalonFX rrMotor = new TalonFX(Ports.Drivetrain.RR);
     private TalonFX flMotor = new TalonFX(Ports.Drivetrain.FL);
@@ -20,20 +21,6 @@ public class Drivetrain extends SubsystemBase {
     private UnitModel lowGear = new UnitModel(0);
     private Pose2d position = new Pose2d();
     private double heading;
-
-    public double getHeading() {
-        return heading;
-    }
-
-    public double getPositionX() {
-        return position.getTranslation().getX();
-    }
-
-    public double getPositionY() {
-        return position.getTranslation().getY();
-    }
-
-    public Timer timer = new Timer();
 
     public Drivetrain() {
         rrMotor.setInverted(Ports.Drivetrain.REVERSER_RR);
@@ -55,6 +42,18 @@ public class Drivetrain extends SubsystemBase {
 //        rlMotor.setNeutralMode(NeutralMode.Brake);
 
         starTimer();
+    }
+
+    public double getHeading() {
+        return heading;
+    }
+
+    public double getPositionX() {
+        return position.getTranslation().getX();
+    }
+
+    public double getPositionY() {
+        return position.getTranslation().getY();
     }
 
     /**
@@ -164,12 +163,23 @@ public class Drivetrain extends SubsystemBase {
         timer.start();
     }
 
+    public void setLeftVelocity() {
+    }
 
-    /**
-     * which gearmodes exist
-     */
-    public enum GearMode {
-        HIGH, LOW
+    public void setRightVelocity() {
+    }
+
+    public void getLeftVelocity() {
+    }
+
+    public void getRightVelocity() {
+    }
+
+    public Pose2d getPose() {
+        return null;
+    }
+
+    public void setPose(Pose2d pose) {
     }
 
     public double yourmama(double x) {
@@ -179,10 +189,17 @@ public class Drivetrain extends SubsystemBase {
         return (1 - Math.sqrt(1 - Math.pow(x, 2)));
     }
 
-
     @Override
     public void periodic() {
 
+    }
+
+
+    /**
+     * which gearmodes exist
+     */
+    public enum GearMode {
+        HIGH, LOW
     }
 }
 
