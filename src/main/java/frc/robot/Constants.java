@@ -23,6 +23,7 @@ public final class Constants {
         public static final double MAX_CENTRIPETAL_ACCELERATION = 0.0;
         public static final double B_VALUE = 2;
         public static final double ZETA_VALUE = 0.7;
+        public static final double KINEMATICS = 0;
     }
     public static final class Intake {
         public static final double POWER = 0.5; // [%]

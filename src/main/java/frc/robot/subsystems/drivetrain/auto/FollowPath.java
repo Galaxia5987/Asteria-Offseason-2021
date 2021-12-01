@@ -2,12 +2,12 @@ package frc.robot.subsystems.drivetrain.auto;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.RamseteController;
+import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import frc.robot.Constants;
-import frc.robot.Ports;
-import frc.robot.autonomous.Path;
 import frc.robot.subsystems.drivetrain.Drivetrain;
 
 public class FollowPath extends CommandBase {
@@ -18,7 +18,9 @@ public class FollowPath extends CommandBase {
 
     private final Timer timer = new Timer();
 
-    public FollowPath(Drivetrain drivetrain, Trajectory trajectory){
+    private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.Autonomous.KINEMATICS);
+
+    public FollowPath(Drivetrain drivetrain, Trajectory trajectory) {
         this.drivetrain = drivetrain;
         this.trajectory = trajectory;
         addRequirements(drivetrain);
@@ -33,17 +35,22 @@ public class FollowPath extends CommandBase {
 
     @Override
     public void execute() {
-
+        Trajectory.State goal = trajectory.sample(timer.get());
+        ChassisSpeeds adjustedSpeeds = ramsete.calculate(drivetrain.getPose(), goal);
+        DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(adjustedSpeeds);
+        double left = wheelSpeeds.leftMetersPerSecond;
+        double right = wheelSpeeds.rightMetersPerSecond;
+        drivetrain.setLeftVelocity();
+        drivetrain.setRightVelocity();
     }
 
     @Override
     public boolean isFinished() {
         return timer.hasElapsed(trajectory.getTotalTimeSeconds());
-
     }
 
     @Override
     public void end(boolean interrupted) {
-        super.end(interrupted);
+        timer.stop();
     }
 }

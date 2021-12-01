@@ -5,7 +5,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Ports;
@@ -153,12 +152,19 @@ public class Drivetrain extends SubsystemBase {
         timer.start();
     }
 
+    public void setLeftVelocity(){}
 
-    public void setPose(Pose2d pose) {
+    public void setRightVelocity(){}
 
+    public void getLeftVelocity(){}
+
+    public void getRightVelocity(){}
+
+    public void setPose(Pose2d pose) {}
+
+    public Pose2d getPose() {
+        return null;
     }
-
-    public void getPose() {}
 
     /**
      * which gearmodes exist
