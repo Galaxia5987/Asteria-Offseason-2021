@@ -18,6 +18,7 @@ import frc.robot.UnitModel;
 import org.techfire225.webapp.FireLog;
 
 public class Drivetrain extends SubsystemBase {
+    public Timer timer = new Timer();
     private TalonFX frMotor = new TalonFX(Ports.Drivetrain.FR);
     private TalonFX rrMotor = new TalonFX(Ports.Drivetrain.RR);
     private TalonFX flMotor = new TalonFX(Ports.Drivetrain.FL);
@@ -27,9 +28,6 @@ public class Drivetrain extends SubsystemBase {
     private UnitModel lowGear = new UnitModel(Constants.Drivetrain.LOW_TICKS_PER_METER);
     private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())),
             new Pose2d(5.0, 13.5, new Rotation2d()));
-
-
-    public Timer timer = new Timer();
 
     public Drivetrain() {
         frMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
@@ -55,6 +53,18 @@ public class Drivetrain extends SubsystemBase {
 
 
         starTimer();
+    }
+
+    public double getHeading() {
+        return heading;
+    }
+
+    public double getPositionX() {
+        return position.getTranslation().getX();
+    }
+
+    public double getPositionY() {
+        return position.getTranslation().getY();
     }
 
     /**
@@ -164,12 +174,10 @@ public class Drivetrain extends SubsystemBase {
         timer.start();
     }
 
+    public void setLeftVelocity() {
+    }
 
-    /**
-     * which gearmodes exist
-     */
-    public enum GearMode {
-        HIGH, LOW
+    public void setRightVelocity() {
     }
 
     public double smoothingFunction(double x) {
@@ -240,6 +248,14 @@ public class Drivetrain extends SubsystemBase {
         flMotor.config_kI(0, Constants.Drivetrain.kILeft.get());
         flMotor.config_kD(0, Constants.Drivetrain.kDLeft.get());
         flMotor.config_kF(0, Constants.Drivetrain.kFLeft.get());
+    }
+
+
+    /**
+     * which gearmodes exist
+     */
+    public enum GearMode {
+        HIGH, LOW
     }
 }
 

@@ -23,10 +23,22 @@ public final class Constants {
         public static final double MAX_SPEED = 0.0;
         public static final double MAX_ACCELERATION = 0.0;
         public static final double MAX_CENTRIPETAL_ACCELERATION = 0.0;
+        public static final double B_VALUE = 2;
+        public static final double ZETA_VALUE = 0.7;
+        public static final double KINEMATICS = 1.7;
+        public static final double Left_KA = 0;
+        public static final double Left_KS = 0;
+        public static final double Left_KV = 0;
+        public static final double Right_KA = 0;
+        public static final double Right_KS = 0;
+        public static final double Right_KV = 0;
+
     }
+
     public static final class Intake {
         public static final double POWER = 0.5; // [%]
     }
+
     public static final class Conveyor {
         public static final int SENSE_DISTANCE = 0;
         public static final int MIN_PROXIMITY_DISTANCE = 0;
@@ -38,7 +50,8 @@ public final class Constants {
         public static int BALL_NUMBER = 3;
         public static double POWER = 0.7;
     }
-    public static class Funnel{
+
+    public static class Funnel {
         public static double POWER = 0.5;
     }
 
@@ -54,6 +67,7 @@ public final class Constants {
         public static final double TICKS = 4096;
 
     }
+
     public static class Turret {
         public static final double ERROR_RANGE = 2; // degrees
         public static final double MAX_TICKS = 912; // degrees
@@ -64,10 +78,9 @@ public final class Constants {
         public static final double kI = 0;
         //        public static final double kI = 0.01;
         public static final double kD = 0.04;
-//        public static final double kD = 150;
+        //        public static final double kD = 150;
         public static final double DEADBAND = 0.1;
-        public static final double MIN_JOYSTICK_DISTANCE = 0.6
-        ;
+        public static final double MIN_JOYSTICK_DISTANCE = 0.6;
     }
 
     public static class Drivetrain {
