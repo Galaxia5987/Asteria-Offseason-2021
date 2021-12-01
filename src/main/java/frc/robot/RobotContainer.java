@@ -17,15 +17,15 @@ import frc.robot.commandgroups.Shoot;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.subsystems.conveyor.commands.MinimizeConveyor;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import frc.robot.subsystems.drivetrain.commands.DrivetrainDefaultCommand;
-import frc.robot.subsystems.drivetrain.commands.Gas;
-import frc.robot.subsystems.drivetrain.commands.ToggleGear;
-import frc.robot.subsystems.drivetrain.commands.ToggleIntakePiston;
+import frc.robot.subsystems.drivetrain.commands.*;
 import frc.robot.subsystems.funnel.Funnel;
 import frc.robot.subsystems.intake.Intake;
 import frc.robot.subsystems.shooter.Shooter;
 import frc.robot.subsystems.turret.Turret;
 import frc.robot.subsystems.turret.commands.Gunner;
+import frc.robot.valuetuner.ValueTuner;
+import frc.robot.valuetuner.WebConstant;
+import org.techfire225.webapp.Webserver;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -38,13 +38,13 @@ public class RobotContainer {
     public static final XboxController xboxControllerOperator = new XboxController(0);
     public static final XboxController xboxControllerDriver = new XboxController(1);
     //    private final Trigger RT = new Trigger(() -> xboxControllerOperator.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.3);
-    private Shooter sniper = new Shooter();
-    private final Turret gunnerMan = new Turret();
+//    private Shooter sniper = new Shooter();
+//    private final Turret gunnerMan = new Turret();
     // The robot's subsystems and commands are defined here...
 
-    Conveyor conveyor = new Conveyor();
-    Funnel funnel = new Funnel();
-    Intake intake = new Intake();
+//    Conveyor conveyor = new Conveyor();
+//    Funnel funnel = new Funnel();
+//    Intake intake = new Intake();
     Drivetrain drivetrain = new Drivetrain();
     JoystickButton a = new JoystickButton(xboxControllerOperator, XboxController.Button.kA.value);
     JoystickButton b = new JoystickButton(xboxControllerOperator, XboxController.Button.kB.value);
@@ -56,6 +56,8 @@ public class RobotContainer {
     JoystickButton rb = new JoystickButton(xboxControllerOperator, XboxController.Button.kBumperRight.value);
     JoystickButton lb = new JoystickButton(xboxControllerOperator, XboxController.Button.kBumperLeft.value);
 
+    WebConstant velocity = new WebConstant("velocity", 0);
+
 
     // The robot's subsystems and commands are defined here...
 
@@ -64,8 +66,13 @@ public class RobotContainer {
      */
     public RobotContainer() {
         configureButtonBindings();
-        drivetrain.setDefaultCommand(new Gas(drivetrain));
-        gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
+//        drivetrain.setDefaultCommand(new Gas(drivetrain));
+//        gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
+
+        if (Robot.debug) {
+            startValueTuner();
+            startFireLog();
+        }
     }
 
 
@@ -76,14 +83,16 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        yDrive.whenPressed(new ToggleGear(drivetrain));
-        x.whileHeld(new Shoot(conveyor, sniper, 0.7));
-        rt.whileActiveContinuous(new Shoot(conveyor, sniper, 1));
-        a.whileHeld(new MinimizeConveyor(conveyor, Constants.Conveyor.REVERSE_MOTOR_POWER));
-        y.whileHeld(new PickUpBalls(conveyor, funnel, intake));
-        b.whileHeld(new Shoot(conveyor, sniper, 0.4));
-        lb.whenPressed(new ToggleIntakePiston(intake));
+//        yDrive.whenPressed(new ToggleGear(drivetrain));
+//        x.whileHeld(new Shoot(conveyor, sniper, 0.7));
+//        rt.whileActiveContinuous(new Shoot(conveyor, sniper, 1));
+//        a.whileHeld(new MinimizeConveyor(conveyor, Constants.Conveyor.REVERSE_MOTOR_POWER));
+//        y.whileHeld(new PickUpBalls(conveyor, funnel, intake));
+//        b.whileHeld(new Shoot(conveyor, sniper, 0.4));
+//        lb.whenPressed(new ToggleIntakePiston(intake));
+        a.whileHeld(new TestVelocity(drivetrain, velocity::get));
 
+//        a.whenPressed(new ToggleGear(drivetrain));
     }
 
 
@@ -96,5 +105,23 @@ public class RobotContainer {
 
         // An ExampleCommand will run in autonomous
         return null;
+    }
+
+    /**
+     * Initiates the value tuner.
+     */
+    private void startValueTuner() {
+        new ValueTuner().start();
+    }
+
+    /**
+     * Initiates the port of team 225s Fire-Logger.
+     */
+    private void startFireLog() {
+        try {
+            new Webserver();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

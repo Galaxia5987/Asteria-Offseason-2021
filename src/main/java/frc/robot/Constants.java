@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import frc.robot.valuetuner.WebConstant;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -73,12 +75,14 @@ public final class Constants {
         public static final double TURNING_TOLERANCE = 1; // Stops the robot from shifting while the robot is turning.
         public static final double SHIFT_SPEED_TOLERANCE = 0.5; // Stops the robot from shifting while the robot is too fast
         public static final double JOYSTICK_DRIFT = 0.05;
-        public static final double kPLeft = 0;
-        public static final double kILeft = 0;
-        public static final double kDLeft = 0;
-        public static final double kPRight = 0;
-        public static final double kIRight = 0;
-        public static final double kDRight = 0;
+        public static final WebConstant kPLeft = new WebConstant("kPLeft", 0.03);
+        public static final WebConstant kILeft = new WebConstant("kILeft", 0);
+        public static final WebConstant kDLeft = new WebConstant("kDLeft", 1.7);
+        public static final WebConstant kPRight = new WebConstant("kPRight", 0.04);
+        public static final WebConstant kIRight = new WebConstant("kIRight", 0);
+        public static final WebConstant kDRight = new WebConstant("kDRight", 1.7);
+        public static WebConstant kFLeft = new WebConstant("kFLeft", 0.046);
+        public static WebConstant kFRight = new WebConstant("kFRight", 0.046);
         public static final int TICKS = 2048;
         public static final double DIAMETER = 6 * 0.0254; // [m]
         public static final double HIGH_GEAR_RATIO = 2000 / 216.0;

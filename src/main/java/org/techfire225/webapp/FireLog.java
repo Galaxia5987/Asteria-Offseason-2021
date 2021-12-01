@@ -1,10 +1,11 @@
 package org.techfire225.webapp;
 
+import com.google.gson.JsonObject;
+import frc.robot.Robot;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
-import com.google.gson.JsonObject;
-import frc.robot.Robot;
 
 public class FireLog {
   private static HashMap<String, Object> topics = new HashMap<>();

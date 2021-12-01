@@ -2,6 +2,8 @@ package frc.robot.subsystems.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
@@ -13,6 +15,7 @@ import frc.robot.Constants;
 import frc.robot.Ports;
 import frc.robot.Robot;
 import frc.robot.UnitModel;
+import org.techfire225.webapp.FireLog;
 
 public class Drivetrain extends SubsystemBase {
     private TalonFX frMotor = new TalonFX(Ports.Drivetrain.FR);
@@ -29,6 +32,12 @@ public class Drivetrain extends SubsystemBase {
     public Timer timer = new Timer();
 
     public Drivetrain() {
+        frMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
+        flMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
+        frMotor.setNeutralMode(NeutralMode.Coast);
+        flMotor.setNeutralMode(NeutralMode.Coast);
+        frMotor.enableVoltageCompensation(true);
+        flMotor.enableVoltageCompensation(true);
         rrMotor.setInverted(Ports.Drivetrain.REVERSER_RR);
         frMotor.setInverted(Ports.Drivetrain.REVERSER_FR);
         flMotor.setInverted(Ports.Drivetrain.REVERSER_FL);
@@ -39,13 +48,7 @@ public class Drivetrain extends SubsystemBase {
         flMotor.setSensorPhase(Ports.Drivetrain.REVERSER_SF1);
         rlMotor.setSensorPhase(Ports.Drivetrain.REVERSER_SF2);
 
-        frMotor.config_kP(0, Constants.Drivetrain.kPRight);
-        frMotor.config_kI(0, Constants.Drivetrain.kIRight);
-        frMotor.config_kD(0, Constants.Drivetrain.kDRight);
-        flMotor.config_kP(0, Constants.Drivetrain.kPLeft);
-        flMotor.config_kI(0, Constants.Drivetrain.kILeft);
-        flMotor.config_kD(0, Constants.Drivetrain.kDLeft);
-
+        configPID();
 
         rlMotor.follow(flMotor);
         rrMotor.follow(frMotor);
@@ -80,7 +83,7 @@ public class Drivetrain extends SubsystemBase {
      */
 
     public double getVelocityLeft() {
-        return getUnitModel().toVelocity(frMotor.getSelectedSensorVelocity());
+        return getUnitModel().toVelocity(flMotor.getSelectedSensorVelocity());
     }
 
     /**
@@ -115,17 +118,17 @@ public class Drivetrain extends SubsystemBase {
      * @return the piston position them, changes the gear.
      */
     public boolean isHighGear() {
-        return piston.get();
+        return !piston.get();
     }
 
     public void shiftHigh() {
         starTimer();
-        piston.set(true);
+        piston.set(false);
     }
 
     public void shiftLow() {
         starTimer();
-        piston.set(false);
+        piston.set(true);
     }
 
     /**
@@ -212,18 +215,31 @@ public class Drivetrain extends SubsystemBase {
      * @param feedforwardRight sets a default voltage that the robot uses to get to a desired speed while overcoming things like friction and natural forces on the right side
      */
     public void setVelocitiesAndFeedforward(double velocityLeft, double velocityRight, double feedforwardLeft, double feedforwardRight) {
-        setVelocityRight(velocityRight, feedforwardLeft);
-        setVelocityLeft(velocityLeft, feedforwardRight);
+        setVelocityRight(velocityRight, feedforwardRight);
+        setVelocityLeft(velocityLeft, feedforwardLeft);
 
     }
 
-
-    @Override
     /**
      * updates position and rotation over time
      */
+    @Override
     public void periodic() {
         odometry.update(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())), getDistanceLeft(), getDistanceRight());
+        configPID();
+        FireLog.log("current-velocity-left", getVelocityLeft());
+        FireLog.log("current-velocity-right", getVelocityRight());
+    }
+
+    public void configPID() {
+        frMotor.config_kP(0, Constants.Drivetrain.kPRight.get());
+        frMotor.config_kI(0, Constants.Drivetrain.kIRight.get());
+        frMotor.config_kD(0, Constants.Drivetrain.kDRight.get());
+        frMotor.config_kF(0, Constants.Drivetrain.kFRight.get());
+        flMotor.config_kP(0, Constants.Drivetrain.kPLeft.get());
+        flMotor.config_kI(0, Constants.Drivetrain.kILeft.get());
+        flMotor.config_kD(0, Constants.Drivetrain.kDLeft.get());
+        flMotor.config_kF(0, Constants.Drivetrain.kFLeft.get());
     }
 }
 
