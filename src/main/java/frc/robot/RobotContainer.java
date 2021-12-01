@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.autonomous.commands.FollowPath;
+import frc.robot.commandgroups.BottomPath;
 import frc.robot.commandgroups.PickUpBalls;
 import frc.robot.commandgroups.Shoot;
 import frc.robot.subsystems.conveyor.Conveyor;
@@ -100,6 +101,8 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new FollowPath(PathUtil.getTrajectory("paths/TakeCube1.wpilib.json"), drivetrain);
+        return new BottomPath(
+                drivetrain, sniper, intake, conveyor, funnel
+        );
     }
 }
