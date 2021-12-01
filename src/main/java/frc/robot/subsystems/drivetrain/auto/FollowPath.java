@@ -43,7 +43,6 @@ public class FollowPath extends CommandBase {
 
     @Override
     public void execute() {
-
         Trajectory.State goal = trajectory.sample(timer.get());
         ChassisSpeeds adjustedSpeeds = ramsete.calculate(drivetrain.getPose(), goal);
         DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(adjustedSpeeds);
@@ -57,7 +56,7 @@ public class FollowPath extends CommandBase {
         double accelerationL = deltaVelocityL / deltaTime;
 
         double ffR = rightFeedForward.calculate(drivetrain.getVelocityRight());
-        double ffL = rightFeedForward.calculate(drivetrain.getVelocityLeft());
+        double ffL = leftFeedforward.calculate(drivetrain.getVelocityLeft());
 
         currentVelocityL = drivetrain.getVelocityLeft();
         currentVelocityR = drivetrain.getVelocityRight();
