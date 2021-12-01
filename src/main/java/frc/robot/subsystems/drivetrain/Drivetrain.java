@@ -55,18 +55,6 @@ public class Drivetrain extends SubsystemBase {
         starTimer();
     }
 
-    public double getHeading() {
-        return heading;
-    }
-
-    public double getPositionX() {
-        return position.getTranslation().getX();
-    }
-
-    public double getPositionY() {
-        return position.getTranslation().getY();
-    }
-
     /**
      * @param valueMotorR for set power function + the Right motor is powered in percent.
      */
@@ -172,12 +160,6 @@ public class Drivetrain extends SubsystemBase {
     public void starTimer() {
         timer.reset();
         timer.start();
-    }
-
-    public void setLeftVelocity() {
-    }
-
-    public void setRightVelocity() {
     }
 
     public double smoothingFunction(double x) {

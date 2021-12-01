@@ -31,7 +31,7 @@ public class FollowPath extends CommandBase {
 
     @Override
     public void initialize() {
-        drivetrain.setPose(trajectory.sample(0).poseMeters);
+        drivetrain.resetPose(trajectory.sample(0).poseMeters);
         timer.reset();
         timer.start();
 
@@ -58,6 +58,7 @@ public class FollowPath extends CommandBase {
         double ffR = rightFeedForward.calculate(drivetrain.getVelocityRight());
         double ffL = leftFeedforward.calculate(drivetrain.getVelocityLeft());
 
+        drivetrain.setVelocitiesAndFeedforward(left, right, ffL, ffR);
         currentVelocityL = drivetrain.getVelocityLeft();
         currentVelocityR = drivetrain.getVelocityRight();
         currentTime = timer.get();
