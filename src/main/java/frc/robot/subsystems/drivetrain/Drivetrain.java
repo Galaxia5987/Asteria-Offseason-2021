@@ -1,6 +1,7 @@
 package frc.robot.subsystems.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
@@ -174,13 +175,12 @@ public class Drivetrain extends SubsystemBase {
         }
         return (1 - Math.sqrt(1 - Math.pow(x, 2)));
     }
-
-    public void setVelocityRight(double velocityRight) {
-        frMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityRight));
+    public void setVelocityRight(double velocityRight, double feedforward) {
+        frMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityRight), DemandType.ArbitraryFeedForward, feedforward / 12);
     }
 
-    public void setVelocityLeft(double velocityLeft) {
-        flMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityLeft));
+    public void setVelocityLeft(double velocityLeft, double feedforward) {
+        flMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityLeft), DemandType.ArbitraryFeedForward, feedforward / 12);
     }
 
     public double getDistanceLeft() {
@@ -204,6 +204,19 @@ public class Drivetrain extends SubsystemBase {
     public void resetPose(Pose2d pose) {
         odometry.resetPosition(pose, new Rotation2d(Math.toRadians(-Robot.navx.getAngle())));
     }
+
+    /**
+     * @param velocityLeft sets velocity of left side
+     * @param velocityRight sets velocity of right side
+     * @param feedforwardLeft sets a default voltage that the robot uses to get to a desired speed while overcoming things like friction and natural forces on the left side
+     * @param feedforwardRight sets a default voltage that the robot uses to get to a desired speed while overcoming things like friction and natural forces on the right side
+     */
+    public void setVelocitiesAndFeedforward(double velocityLeft, double velocityRight, double feedforwardLeft, double feedforwardRight) {
+        setVelocityRight(velocityRight, feedforwardLeft);
+        setVelocityLeft(velocityLeft, feedforwardRight);
+
+    }
+
 
     @Override
     /**
