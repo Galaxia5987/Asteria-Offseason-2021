@@ -14,7 +14,7 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 public class FollowPath extends CommandBase {
     private final Drivetrain drivetrain;
     private final Trajectory trajectory;
-    private final RamseteController ramsete = new RamseteController(Constants.Autonomous.B_VALUE, Constants.Autonomous.ZETA_VALUE);
+    private final RamseteController ramsete = new RamseteController(Constants.Autonomous.BETA, Constants.Autonomous.ZETA);
     private final Timer timer = new Timer();
     private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.Autonomous.KINEMATICS);
     private final SimpleMotorFeedforward leftFeedforward = new SimpleMotorFeedforward(Constants.Autonomous.Left_KS, Constants.Autonomous.Left_KV, Constants.Autonomous.Left_KA);
@@ -55,15 +55,13 @@ public class FollowPath extends CommandBase {
         double accelerationR = deltaVelocityR / deltaTime;
         double accelerationL = deltaVelocityL / deltaTime;
 
-        double ffR = rightFeedForward.calculate(drivetrain.getVelocityRight());
-        double ffL = leftFeedforward.calculate(drivetrain.getVelocityLeft());
+        double ffR = rightFeedForward.calculate(right, accelerationR);
+        double ffL = leftFeedforward.calculate(left, accelerationL);
 
         drivetrain.setVelocitiesAndFeedforward(left, right, ffL, ffR);
         currentVelocityL = drivetrain.getVelocityLeft();
         currentVelocityR = drivetrain.getVelocityRight();
         currentTime = timer.get();
-
-
     }
 
     @Override

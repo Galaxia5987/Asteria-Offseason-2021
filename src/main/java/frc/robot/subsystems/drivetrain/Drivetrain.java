@@ -18,6 +18,8 @@ import frc.robot.UnitModel;
 import org.techfire225.webapp.FireLog;
 
 public class Drivetrain extends SubsystemBase {
+    private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())),
+            new Pose2d(5.0, 13.5, new Rotation2d()));
     public Timer timer = new Timer();
     private TalonFX frMotor = new TalonFX(Ports.Drivetrain.FR);
     private TalonFX rrMotor = new TalonFX(Ports.Drivetrain.RR);
@@ -26,8 +28,6 @@ public class Drivetrain extends SubsystemBase {
     private Solenoid piston = new Solenoid(0);
     private UnitModel highGear = new UnitModel(Constants.Drivetrain.HIGH_TICKS_PER_METER);
     private UnitModel lowGear = new UnitModel(Constants.Drivetrain.LOW_TICKS_PER_METER);
-    private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())),
-            new Pose2d(5.0, 13.5, new Rotation2d()));
 
     public Drivetrain() {
         frMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
@@ -162,26 +162,51 @@ public class Drivetrain extends SubsystemBase {
         timer.start();
     }
 
+    /**
+     * This function smooths inputs on a joystick from -1 to 1.
+     *
+     * @param x is the joystick input value.
+     * @return the smoothed value (the shape of the function is an upside down half circle).
+     */
     public double smoothingFunction(double x) {
         if (x < 0) {
             return (-(1 - Math.sqrt(1 - Math.pow(-x, 2))));
         }
         return (1 - Math.sqrt(1 - Math.pow(x, 2)));
     }
+
+    /**
+     * Function that sets the velocity of the motors on the right side of the robot.
+     *
+     * @param velocityRight is the velocity of the motors. [m/s]
+     * @param feedforward   is the arbitrary feed forward given to the motors. [V]
+     */
     public void setVelocityRight(double velocityRight, double feedforward) {
         frMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityRight), DemandType.ArbitraryFeedForward, feedforward / 12);
     }
 
+    /**
+     * Function that sets the velocity of the motors on the left side of the robot.
+     *
+     * @param velocityLeft is the velocity of the motors. [m/s]
+     * @param feedforward  is the arbitrary feed forward given to the motors. [V]
+     */
     public void setVelocityLeft(double velocityLeft, double feedforward) {
         flMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityLeft), DemandType.ArbitraryFeedForward, feedforward / 12);
     }
 
+    /**
+     * @return the distance traveled by the left side of the robot. [m]
+     */
     public double getDistanceLeft() {
-        return flMotor.getSensorCollection().getIntegratedSensorPosition();
+        return getUnitModel().toUnits(flMotor.getSensorCollection().getIntegratedSensorPosition());
     }
 
+    /**
+     * @return the distance traveled by the right side of the robot.
+     */
     public double getDistanceRight() {
-        return frMotor.getSensorCollection().getIntegratedSensorPosition();
+        return getUnitModel().toUnits(frMotor.getSensorCollection().getIntegratedSensorPosition());
     }
 
     /**
@@ -199,9 +224,9 @@ public class Drivetrain extends SubsystemBase {
     }
 
     /**
-     * @param velocityLeft sets velocity of left side
-     * @param velocityRight sets velocity of right side
-     * @param feedforwardLeft sets a default voltage that the robot uses to get to a desired speed while overcoming things like friction and natural forces on the left side
+     * @param velocityLeft     sets velocity of left side
+     * @param velocityRight    sets velocity of right side
+     * @param feedforwardLeft  sets a default voltage that the robot uses to get to a desired speed while overcoming things like friction and natural forces on the left side
      * @param feedforwardRight sets a default voltage that the robot uses to get to a desired speed while overcoming things like friction and natural forces on the right side
      */
     public void setVelocitiesAndFeedforward(double velocityLeft, double velocityRight, double feedforwardLeft, double feedforwardRight) {
