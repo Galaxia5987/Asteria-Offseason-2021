@@ -17,8 +17,8 @@ public class FollowPath extends CommandBase {
     private final RamseteController ramsete = new RamseteController(Constants.Autonomous.BETA, Constants.Autonomous.ZETA);
     private final Timer timer = new Timer();
     private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.Autonomous.KINEMATICS);
-    private final SimpleMotorFeedforward leftFeedforward = new SimpleMotorFeedforward(Constants.Autonomous.Left_KS, Constants.Autonomous.Left_KV, Constants.Autonomous.Left_KA);
-    private final SimpleMotorFeedforward rightFeedForward = new SimpleMotorFeedforward(Constants.Autonomous.Right_KS, Constants.Autonomous.Right_KV, Constants.Autonomous.Right_KA);
+    private final SimpleMotorFeedforward leftFeedforward = new SimpleMotorFeedforward(Constants.Autonomous.KS, Constants.Autonomous.KV, Constants.Autonomous.KA);
+    private final SimpleMotorFeedforward rightFeedForward = new SimpleMotorFeedforward(Constants.Autonomous.KS, Constants.Autonomous.KV, Constants.Autonomous.KA);
     private double currentVelocityL;
     private double currentVelocityR;
     private double currentTime;
@@ -58,7 +58,7 @@ public class FollowPath extends CommandBase {
         double ffR = rightFeedForward.calculate(right, accelerationR);
         double ffL = leftFeedforward.calculate(left, accelerationL);
 
-        drivetrain.setVelocitiesAndFeedforward(left, right, ffL, ffR);
+        drivetrain.setVelocitiesAndFeedforward(left, right, 0, 0);
         currentVelocityL = drivetrain.getVelocityLeft();
         currentVelocityR = drivetrain.getVelocityRight();
         currentTime = timer.get();

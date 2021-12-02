@@ -21,16 +21,12 @@ import frc.robot.commandgroups.Shoot;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.subsystems.conveyor.commands.MinimizeConveyor;
 import frc.robot.subsystems.drivetrain.Drivetrain;
-import frc.robot.subsystems.drivetrain.commands.Gas;
-import frc.robot.subsystems.drivetrain.commands.ToggleGear;
-import frc.robot.subsystems.drivetrain.commands.ToggleIntakePiston;
+import frc.robot.subsystems.drivetrain.commands.*;
 import frc.robot.subsystems.funnel.Funnel;
 import frc.robot.subsystems.intake.Intake;
 import frc.robot.subsystems.shooter.Shooter;
 import frc.robot.subsystems.turret.Turret;
 import frc.robot.subsystems.turret.commands.Gunner;
-import frc.robot.subsystems.drivetrain.commands.JoystickPIDUwU;
-import frc.robot.subsystems.drivetrain.commands.TestVelocity;
 import frc.robot.valuetuner.ValueTuner;
 import frc.robot.valuetuner.WebConstant;
 import org.techfire225.webapp.Webserver;
@@ -75,7 +71,8 @@ public class RobotContainer {
         configureButtonBindings();
 //        drivetrain.setDefaultCommand(new Gas(drivetrain));
 //        gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
-        drivetrain.setDefaultCommand(new JoystickPIDUwU(drivetrain));
+//        drivetrain.setDefaultCommand(new JoystickPIDUwU(drivetrain));
+        drivetrain.setDefaultCommand(new DrivetrainDefaultCommand(drivetrain));
 
         if (Robot.debug) {
             startValueTuner();

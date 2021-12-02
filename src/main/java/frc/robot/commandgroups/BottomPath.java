@@ -18,16 +18,7 @@ public class BottomPath extends SequentialCommandGroup {
                       Conveyor conveyor,
                       Funnel funnel) {
         addCommands(
-                new FollowPath(drivetrain, PathUtil.getTrajectory("paths/PlaceInitcube.wpilib.json")),
-                new Shoot(conveyor, shooter, power).withTimeout(2),
-                new FollowPath(drivetrain, PathUtil.getTrajectory("paths/TakeCube1.wpilib.json")),
-                new PickUpBalls(conveyor, funnel, intake).withTimeout(2),
-                new FollowPath(drivetrain, PathUtil.getTrajectory("paths/PlaceScale1.wpilib.json")),
-                new Shoot(conveyor, shooter, power).withTimeout(2),
-                new FollowPath(drivetrain, PathUtil.getTrajectory("paths/TakeCube2.wpilib.json")),
-                new PickUpBalls(conveyor, funnel, intake).withTimeout(2),
-                new FollowPath(drivetrain, PathUtil.getTrajectory("paths/PlaceScale2.wpilib.json")),
-                new Shoot(conveyor, shooter, power).withTimeout(2)
+                new FollowPath(drivetrain, PathUtil.getTrajectory("paths/output/Unnamed.wpilib.json"))
         );
     }
 }

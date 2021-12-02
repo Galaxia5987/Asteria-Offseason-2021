@@ -10,16 +10,18 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Ports;
 import frc.robot.Robot;
 import frc.robot.UnitModel;
+import org.ghrobotics.lib.debug.FalconDashboard;
 import org.techfire225.webapp.FireLog;
 
 public class Drivetrain extends SubsystemBase {
     private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())),
-            new Pose2d(5.0, 13.5, new Rotation2d()));
+            new Pose2d(0, 0, new Rotation2d()));
     public Timer timer = new Timer();
     private TalonFX frMotor = new TalonFX(Ports.Drivetrain.FR);
     private TalonFX rrMotor = new TalonFX(Ports.Drivetrain.RR);
@@ -45,6 +47,8 @@ public class Drivetrain extends SubsystemBase {
         frMotor.setSensorPhase(Ports.Drivetrain.REVERSER_SR2);
         flMotor.setSensorPhase(Ports.Drivetrain.REVERSER_SF1);
         rlMotor.setSensorPhase(Ports.Drivetrain.REVERSER_SF2);
+        frMotor.setSelectedSensorPosition(0);
+        flMotor.setSelectedSensorPosition(0);
 
         configPID();
 
@@ -89,6 +93,7 @@ public class Drivetrain extends SubsystemBase {
      */
     public UnitModel getUnitModel() {
         if (isHighGear()) {
+            System.out.println("high gear");
             return highGear;
         }
         return lowGear;
@@ -199,14 +204,14 @@ public class Drivetrain extends SubsystemBase {
      * @return the distance traveled by the left side of the robot. [m]
      */
     public double getDistanceLeft() {
-        return getUnitModel().toUnits(flMotor.getSensorCollection().getIntegratedSensorPosition());
+        return getUnitModel().toUnits(flMotor.getSelectedSensorPosition());
     }
 
     /**
      * @return the distance traveled by the right side of the robot.
      */
     public double getDistanceRight() {
-        return getUnitModel().toUnits(frMotor.getSensorCollection().getIntegratedSensorPosition());
+        return getUnitModel().toUnits(frMotor.getSelectedSensorPosition());
     }
 
     /**
@@ -241,9 +246,18 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         odometry.update(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())), getDistanceLeft(), getDistanceRight());
+        System.out.println(("angle: "+ -Robot.navx.getAngle()));
         configPID();
         FireLog.log("current-velocity-left", getVelocityLeft());
         FireLog.log("current-velocity-right", getVelocityRight());
+        System.out.println("Current pose X: " +  getPose().getX());
+        System.out.println("current pose y "+ getPose().getY());
+        System.out.println("get rotation " +getPose().getRotation().getDegrees());
+        FireLog.log("Current pose Y: ", getPose().getY());
+        FireLog.log("Current pose rotation: ", getPose().getRotation());
+        FalconDashboard.INSTANCE.setRobotX(Units.metersToFeet(getPose().getX()));
+        FalconDashboard.INSTANCE.setRobotY(Units.metersToFeet(getPose().getY()));
+        FalconDashboard.INSTANCE.setRobotHeading(getPose().getRotation().getRadians());
     }
 
     public void configPID() {

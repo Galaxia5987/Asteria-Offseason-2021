@@ -14,8 +14,8 @@ import java.util.List;
 public class TestClass {
     private final RamseteController ramsete = new RamseteController(Constants.Autonomous.BETA, Constants.Autonomous.ZETA);
     private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.Autonomous.KINEMATICS);
-    private final SimpleMotorFeedforward leftFeedforward = new SimpleMotorFeedforward(Constants.Autonomous.Left_KS, Constants.Autonomous.Left_KV, Constants.Autonomous.Left_KA);
-    private final SimpleMotorFeedforward rightFeedForward = new SimpleMotorFeedforward(Constants.Autonomous.Right_KS, Constants.Autonomous.Right_KV, Constants.Autonomous.Right_KA);
+    private final SimpleMotorFeedforward leftFeedforward = new SimpleMotorFeedforward(Constants.Autonomous.KS, Constants.Autonomous.KV, Constants.Autonomous.KA);
+    private final SimpleMotorFeedforward rightFeedForward = new SimpleMotorFeedforward(Constants.Autonomous.KS, Constants.Autonomous.KV, Constants.Autonomous.KA);
 
     @Test
     public void testFunction2() {

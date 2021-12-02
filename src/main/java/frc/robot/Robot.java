@@ -88,9 +88,6 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        FalconDashboard.INSTANCE.setPathX(Units.metersToFeet(m_robotContainer.drivetrain.getPose().getX()));
-        FalconDashboard.INSTANCE.setPathY(Units.metersToFeet(m_robotContainer.drivetrain.getPose().getY()));
-        FalconDashboard.INSTANCE.setPathHeading(m_robotContainer.drivetrain.getPose().getRotation().getDegrees());
     }
 
     @Override
@@ -110,6 +107,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+
     }
 
     @Override
