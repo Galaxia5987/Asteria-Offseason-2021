@@ -22,11 +22,11 @@ public class Path {
         DEFAULT_CONFIG.addConstraint(new CentripetalAccelerationConstraint(MAX_CENTRIPETAL_ACCELERATION));
     }
 
-    Path(Pose2d... points) {
+    public Path(Pose2d... points) {
         waypoints = new ArrayList<>(Arrays.asList(points));
     }
 
-    Path(TrajectoryConfig config, Pose2d... points) {
+    public Path(TrajectoryConfig config, Pose2d... points) {
         this(points);
         this.config = config;
     }

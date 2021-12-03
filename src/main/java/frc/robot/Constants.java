@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import frc.robot.valuetuner.WebConstant;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -18,13 +20,23 @@ package frc.robot;
 public final class Constants {
     public static final class Autonomous {
 
-        public static final double MAX_SPEED = 0.0;
-        public static final double MAX_ACCELERATION = 0.0;
-        public static final double MAX_CENTRIPETAL_ACCELERATION = 0.0;
+        public static final double MAX_SPEED = 3;
+        public static final double MAX_ACCELERATION = 2;
+        public static final double MAX_CENTRIPETAL_ACCELERATION = 1.2;
+        public static final double BETA = 2;
+        public static final double ZETA = 0.7;
+        public static final double TRACK_WIDTH = 0.669;
+        public static final double KA =0.29;
+        public static final double KS = 0.75;
+        public static final double KV = 3.44;
+
+
     }
+
     public static final class Intake {
         public static final double POWER = 0.5; // [%]
     }
+
     public static final class Conveyor {
         public static final int SENSE_DISTANCE = 0;
         public static final int MIN_PROXIMITY_DISTANCE = 0;
@@ -36,7 +48,8 @@ public final class Constants {
         public static int BALL_NUMBER = 3;
         public static double POWER = 0.7;
     }
-    public static class Funnel{
+
+    public static class Funnel {
         public static double POWER = 0.5;
     }
 
@@ -52,6 +65,7 @@ public final class Constants {
         public static final double TICKS = 4096;
 
     }
+
     public static class Turret {
         public static final double ERROR_RANGE = 2; // degrees
         public static final double MAX_TICKS = 912; // degrees
@@ -62,10 +76,9 @@ public final class Constants {
         public static final double kI = 0;
         //        public static final double kI = 0.01;
         public static final double kD = 0.04;
-//        public static final double kD = 150;
+        //        public static final double kD = 150;
         public static final double DEADBAND = 0.1;
-        public static final double MIN_JOYSTICK_DISTANCE = 0.6
-        ;
+        public static final double MIN_JOYSTICK_DISTANCE = 0.6;
     }
 
     public static class Drivetrain {
@@ -73,5 +86,20 @@ public final class Constants {
         public static final double TURNING_TOLERANCE = 1; // Stops the robot from shifting while the robot is turning.
         public static final double SHIFT_SPEED_TOLERANCE = 0.5; // Stops the robot from shifting while the robot is too fast
         public static final double JOYSTICK_DRIFT = 0.05;
+        public static final WebConstant kPLeft = new WebConstant("kPLeft", 0.037);
+        public static final WebConstant kILeft = new WebConstant("kILeft", 0);
+        public static final WebConstant kDLeft = new WebConstant("kDLeft", 1.7);
+        public static final WebConstant kPRight = new WebConstant("kPRight", 0.04);
+        public static final WebConstant kIRight = new WebConstant("kIRight", 0);
+        public static final WebConstant kDRight = new WebConstant("kDRight", 1.7);
+        public static WebConstant kFLeft = new WebConstant("kFLeft", 0.046);
+        public static WebConstant kFRight = new WebConstant("kFRight", 0.046);
+        public static final int TICKS = 2048;
+        public static final double DIAMETER = 6 * 0.0254; // [m]
+        public static final double HIGH_GEAR_RATIO = 2000 / 216.0;
+        public static final double LOW_GEAR_RATIO = 2500 / 126.0;
+        public static final double HIGH_TICKS_PER_METER = (TICKS * HIGH_GEAR_RATIO) / (DIAMETER * Math.PI);
+        public static final double LOW_TICKS_PER_METER = (TICKS * LOW_GEAR_RATIO) / (DIAMETER * Math.PI);
+        public static final double VELOCITY = 2.5;
     }
 }
