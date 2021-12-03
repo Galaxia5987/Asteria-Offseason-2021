@@ -1,5 +1,6 @@
 package frc.robot.subsystems.drivetrain.commands;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -21,11 +22,12 @@ public class JoystickPIDUwU extends CommandBase {
 
     @Override
     public void execute() {
-        double velocity = -RobotContainer.xboxControllerOperator.getY() * Constants.Drivetrain.VELOCITY;
+        double velocity = -RobotContainer.xboxControllerOperator.getY(GenericHID.Hand.kRight) * Constants.Drivetrain.VELOCITY;
         FireLog.log("velocity", velocity);
         FireLog.log("Velocity Left", drivetrain.getVelocityLeft());
         FireLog.log("Velocity right", drivetrain.getVelocityRight());
-        drivetrain.setVelocitiesAndFeedforward(velocity, velocity, 0, 0);
+        drivetrain.setVelocityRight(velocity, velocity);
+        drivetrain.setVelocityLeft(velocity, velocity);
     }
 
     @Override

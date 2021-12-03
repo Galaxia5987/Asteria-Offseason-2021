@@ -15,11 +15,11 @@ public class PathUtil {
 
         try {
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(
-                    "paths/TakeCube1.wpilib.json"
+                    trajectoryJson
             );
             trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
         } catch (IOException ex) {
-            DriverStation.reportError("Unable to open trajectory: paths/TakeCube1.wpilib.json", ex.getStackTrace());
+            DriverStation.reportError("Unable to open trajectory: " + trajectoryJson, ex.getStackTrace());
         }
         return trajectory;
     }

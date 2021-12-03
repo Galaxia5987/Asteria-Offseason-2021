@@ -18,7 +18,7 @@ public class BottomPath extends SequentialCommandGroup {
                       Conveyor conveyor,
                       Funnel funnel) {
         addCommands(
-                new FollowPath(drivetrain, PathUtil.getTrajectory("paths/output/Unnamed.wpilib.json"))
+                new FollowPath(drivetrain, PathUtil.getTrajectory("paths/output/patheuwu.wpilib.json"))
         );
     }
 }

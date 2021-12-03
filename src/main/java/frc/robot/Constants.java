@@ -25,7 +25,7 @@ public final class Constants {
         public static final double MAX_CENTRIPETAL_ACCELERATION = 1.2;
         public static final double BETA = 2;
         public static final double ZETA = 0.7;
-        public static final double KINEMATICS = 1.7;
+        public static final double TRACK_WIDTH = 0.669;
         public static final double KA =0.29;
         public static final double KS = 0.75;
         public static final double KV = 3.44;

@@ -34,10 +34,12 @@ public class Drivetrain extends SubsystemBase {
     public Drivetrain() {
         frMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
         flMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
-        frMotor.setNeutralMode(NeutralMode.Coast);
-        flMotor.setNeutralMode(NeutralMode.Coast);
+        frMotor.setNeutralMode(NeutralMode.Brake);
+        flMotor.setNeutralMode(NeutralMode.Brake);
         frMotor.enableVoltageCompensation(true);
         flMotor.enableVoltageCompensation(true);
+        frMotor.configClosedloopRamp(1, 10);
+        flMotor.configClosedloopRamp(1, 10);
         rrMotor.setInverted(Ports.Drivetrain.REVERSER_RR);
         frMotor.setInverted(Ports.Drivetrain.REVERSER_FR);
         flMotor.setInverted(Ports.Drivetrain.REVERSER_FL);
@@ -49,6 +51,8 @@ public class Drivetrain extends SubsystemBase {
         rlMotor.setSensorPhase(Ports.Drivetrain.REVERSER_SF2);
         frMotor.setSelectedSensorPosition(0);
         flMotor.setSelectedSensorPosition(0);
+
+
 
         configPID();
 
@@ -93,7 +97,6 @@ public class Drivetrain extends SubsystemBase {
      */
     public UnitModel getUnitModel() {
         if (isHighGear()) {
-            System.out.println("high gear");
             return highGear;
         }
         return lowGear;
@@ -246,15 +249,16 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         odometry.update(new Rotation2d(Math.toRadians(-Robot.navx.getAngle())), getDistanceLeft(), getDistanceRight());
-        System.out.println(("angle: "+ -Robot.navx.getAngle()));
-        configPID();
-        FireLog.log("current-velocity-left", getVelocityLeft());
-        FireLog.log("current-velocity-right", getVelocityRight());
-        System.out.println("Current pose X: " +  getPose().getX());
-        System.out.println("current pose y "+ getPose().getY());
-        System.out.println("get rotation " +getPose().getRotation().getDegrees());
-        FireLog.log("Current pose Y: ", getPose().getY());
-        FireLog.log("Current pose rotation: ", getPose().getRotation());
+//        System.out.println(("angle: "+ -Robot.navx.getAngle()));
+//        System.out.println("current-velocity-left: " + getVelocityLeft());
+//        System.out.println("current-velocity-right: " + getVelocityRight());
+
+//        System.out.println("Current pose X: " +  getPose().getX());
+//        System.out.println("current pose y "+ getPose().getY());
+//        System.out.println("get rotation " +getPose().getRotation().getDegrees());
+//        System.out.println();
+        FireLog.log("Velocity right ", getVelocityRight());
+        FireLog.log("Velocity left ", getVelocityLeft());
         FalconDashboard.INSTANCE.setRobotX(Units.metersToFeet(getPose().getX()));
         FalconDashboard.INSTANCE.setRobotY(Units.metersToFeet(getPose().getY()));
         FalconDashboard.INSTANCE.setRobotHeading(getPose().getRotation().getRadians());
@@ -277,6 +281,11 @@ public class Drivetrain extends SubsystemBase {
      */
     public enum GearMode {
         HIGH, LOW
+    }
+
+    public void terminate(){
+        frMotor.set(ControlMode.PercentOutput, 0);
+        flMotor.set(ControlMode.PercentOutput, 0);
     }
 }
 

@@ -69,10 +69,10 @@ public class RobotContainer {
      */
     public RobotContainer() {
         configureButtonBindings();
-//        drivetrain.setDefaultCommand(new Gas(drivetrain));
+        drivetrain.setDefaultCommand(new Gas(drivetrain));
 //        gunnerMan.setDefaultCommand(new Gunner(gunnerMan));
 //        drivetrain.setDefaultCommand(new JoystickPIDUwU(drivetrain));
-        drivetrain.setDefaultCommand(new DrivetrainDefaultCommand(drivetrain));
+//        drivetrain.setDefaultCommand(new JoystickPIDUwU(drivetrain));
 
         if (Robot.debug) {
             startValueTuner();
