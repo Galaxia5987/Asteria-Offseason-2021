@@ -15,6 +15,7 @@ import frc.robot.subsystems.drivetrain.Drivetrain;
 public class FollowPath extends CommandBase {
     private final Drivetrain drivetrain;
     private final Trajectory trajectory;
+    private final Pose2d initialPose;
     private final RamseteController ramsete = new RamseteController(Constants.Autonomous.BETA, Constants.Autonomous.ZETA);
     private final Timer timer = new Timer();
     private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.Autonomous.TRACK_WIDTH);
@@ -24,7 +25,8 @@ public class FollowPath extends CommandBase {
     private double currentVelocityR;
     private double currentTime;
 
-    public FollowPath(Drivetrain drivetrain, Trajectory trajectory) {
+    public FollowPath(Drivetrain drivetrain, Trajectory trajectory, Pose2d initialPose) {
+        this.initialPose = initialPose;
         this.drivetrain = drivetrain;
         this.trajectory = trajectory;
         addRequirements(drivetrain);
@@ -33,7 +35,7 @@ public class FollowPath extends CommandBase {
     @Override
     public void initialize() {
 //        drivetrain.resetPose(trajectory.sample(0).poseMeters);
-        drivetrain.resetPose(trajectory.getInitialPose());
+        drivetrain.resetPose(initialPose);
         timer.reset();
         timer.start();
 
