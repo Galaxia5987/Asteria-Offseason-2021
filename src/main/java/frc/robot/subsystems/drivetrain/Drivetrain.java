@@ -177,10 +177,7 @@ public class Drivetrain extends SubsystemBase {
      * @return the smoothed value (the shape of the function is an upside down half circle).
      */
     public double smoothingFunction(double x) {
-        if (x < 0) {
-            return (-(1 - Math.sqrt(1 - Math.pow(-x, 2))));
-        }
-        return (1 - Math.sqrt(1 - Math.pow(x, 2)));
+        return Math.signum(x) * (1 - Math.sqrt(1 - Math.pow(x,2)));
     }
 
     /**
