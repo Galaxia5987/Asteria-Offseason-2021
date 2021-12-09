@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.autonomous.TestPath;
 import frc.robot.commandgroups.PathMaker;
 import frc.robot.subsystems.conveyor.Conveyor;
 import frc.robot.subsystems.drivetrain.Drivetrain;
@@ -101,8 +102,8 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new PathMaker(
-                drivetrain, sniper, intake, conveyor, funnel, "bottom"
+        return new TestPath(
+                "bottom", drivetrain, sniper, intake, conveyor, funnel
         );
     }
 
