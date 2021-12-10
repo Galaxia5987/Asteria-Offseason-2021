@@ -1,6 +1,7 @@
 package frc.robot.subsystems.drivetrain;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
@@ -9,14 +10,16 @@ import frc.robot.Constants;
 import frc.robot.Ports;
 import frc.robot.UnitModel;
 
+import static frc.robot.Constants.Drivetrain.*;
+
 public class Drivetrain extends SubsystemBase {
     private TalonFX frMotor = new TalonFX(Ports.Drivetrain.FR);
     private TalonFX rrMotor = new TalonFX(Ports.Drivetrain.RR);
     private TalonFX flMotor = new TalonFX(Ports.Drivetrain.FL);
     private TalonFX rlMotor = new TalonFX(Ports.Drivetrain.RL);
     private Solenoid piston = new Solenoid(0);
-    private UnitModel highGear = new UnitModel(0);
-    private UnitModel lowGear = new UnitModel(0);
+    private UnitModel highGear = new UnitModel(HIGH_TICKS_PER_METER);
+    private UnitModel lowGear = new UnitModel(LOW_TICKS_PER_METER);
 
 
     public Timer timer = new Timer();
@@ -35,6 +38,8 @@ public class Drivetrain extends SubsystemBase {
         rlMotor.follow(flMotor);
         rrMotor.follow(frMotor);
 
+        configPID();
+
 //        rrMotor.setNeutralMode(NeutralMode.Brake);
 //        frMotor.setNeutralMode(NeutralMode.Brake);
 //        flMotor.setNeutralMode(NeutralMode.Brake);
@@ -42,6 +47,39 @@ public class Drivetrain extends SubsystemBase {
 
         starTimer();
     }
+
+    public void configPID(){
+        frMotor.config_kP(0, kPRight);
+        frMotor.config_kI(0, kIRight);
+        frMotor.config_kD(0, kDRight);
+        frMotor.config_kF(0, kFRight);
+
+        flMotor.config_kP(0, kPLeft);
+        flMotor.config_kI(0, kILeft);
+        flMotor.config_kD(0, kDLeft);
+        flMotor.config_kF(0, kFLeft);
+    }
+
+    /**
+     * Function that sets the velocity of the motors on the right side of the robot.
+     *
+     * @param velocityRight is the velocity of the motors. [m/s]
+     * @param feedforward   is the arbitrary feed forward given to the motors. [V]
+     */
+    public void setVelocityRight(double velocityRight, double feedforward) {
+        frMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityRight), DemandType.ArbitraryFeedForward, feedforward / 12);
+    }
+
+    /**
+     * Function that sets the velocity of the motors on the left side of the robot.
+     *
+     * @param velocityLeft is the velocity of the motors. [m/s]
+     * @param feedforward  is the arbitrary feed forward given to the motors. [V]
+     */
+    public void setVelocityLeft(double velocityLeft, double feedforward) {
+        flMotor.set(ControlMode.Velocity, getUnitModel().toTicks100ms(velocityLeft), DemandType.ArbitraryFeedForward, feedforward / 12);
+    }
+
 
     /**
      * @param valueMotorR for set power function + the Right motor is powered in percent.
@@ -160,9 +198,9 @@ public class Drivetrain extends SubsystemBase {
 
     public double driveFunc(double x) {
         if (x < 0) {
-            return (-(1 - Math.sqrt(1 - Math.pow(-x, 2))));
+            return 3 * (-(1 - Math.sqrt(1 - Math.pow(-x, 2))));
         }
-        return (1 - Math.sqrt(1 - Math.pow(x, 2)));
+        return 3 * (1 - Math.sqrt(1 - Math.pow(x, 2)));
     }
 
 
