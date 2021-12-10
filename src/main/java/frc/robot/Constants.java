@@ -67,5 +67,11 @@ public final class Constants {
         public static final double TURNING_TOLERANCE = 1; // Stops the robot from shifting while the robot is turning.
         public static final double SHIFT_SPEED_TOLERANCE = 0.5; // Stops the robot from shifting while the robot is too fast
         public static final double JOYSTICK_DRIFT = 0.05;
+        public static final double kPLeft = 0.037;
+        public static final double kILeft = 0;
+        public static final double kDLeft = 1.7;
+        public static final double kPRight = 0.04;
+        public static final double kIRight = 0;
+        public static final double kDRight = 1.7;
     }
 }
