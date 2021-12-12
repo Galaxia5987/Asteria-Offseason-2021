@@ -197,7 +197,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public double driveFunc(double x) {
-        return 3 * Math.asin(x * x) * Math.signum(x);
+        return 3 * Math.asin(x * x) * Math.signum(x) * 0.5;
     }
 
 
