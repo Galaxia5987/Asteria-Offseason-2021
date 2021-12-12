@@ -107,10 +107,7 @@ public class Turret extends SubsystemBase {
      * @return whether the angles are equal.
      */
     public boolean anglesEqual() {
-        if (currAngle <= targetAngle + ERROR_RANGE || currAngle >= targetAngle - ERROR_RANGE) {
-            return true;
-        }
-        return false;
+        return currAngle <= targetAngle + ERROR_RANGE || currAngle >= targetAngle - ERROR_RANGE;
     }
 
     /**
