@@ -197,10 +197,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public double driveFunc(double x) {
-        if (x < 0) {
-            return 3 * (-(1 - Math.sqrt(1 - Math.pow(-x, 2))));
-        }
-        return 3 * (1 - Math.sqrt(1 - Math.pow(x, 2)));
+        return 3 * Math.asin(x * x) * Math.signum(x);
     }
 
 

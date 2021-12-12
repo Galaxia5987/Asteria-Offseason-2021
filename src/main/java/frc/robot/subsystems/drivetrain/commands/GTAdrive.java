@@ -20,8 +20,8 @@ public class GTAdrive extends CommandBase {
 
     @Override
     public void execute() {
-        double powerRightJoystick = joystickRight.getX();
-        double powerLeftJoystick = -joystickLeft.getY();
+        double powerRightJoystick = drivetrain.driveFunc(joystickRight.getX());
+        double powerLeftJoystick = drivetrain.driveFunc(-joystickLeft.getY());
 
         if (checkDeadBand(powerLeftJoystick, 0.05)) {
             powerLeftJoystick = 0;
@@ -38,8 +38,8 @@ public class GTAdrive extends CommandBase {
 
 //        finalPowerLeft = drivetrain.driveFunc((!checkDeadBand(finalPowerLeft, 1) ? Math.round(finalPowerLeft) : finalPowerLeft));
 //        finalPowerRight = drivetrain.driveFunc((!checkDeadBand(finalPowerRight, 1) ? Math.round(finalPowerRight) : finalPowerRight));
-        finalPowerLeft = drivetrain.driveFunc(!checkDeadBand(finalPowerLeft, 1) ? Math.round(finalPowerLeft) : finalPowerLeft) * 0.8;
-        finalPowerRight = drivetrain.driveFunc(!checkDeadBand(finalPowerRight, 1) ? Math.round(finalPowerRight) : finalPowerRight) * 0.8;
+        finalPowerLeft = (!checkDeadBand(finalPowerLeft, 1) ? Math.round(finalPowerLeft) : finalPowerLeft) * 0.8;
+        finalPowerRight = (!checkDeadBand(finalPowerRight, 1) ? Math.round(finalPowerRight) : finalPowerRight) * 0.8;
         System.out.println(finalPowerRight);
 
         drivetrain.setVelocityRight(finalPowerRight, 0);
